@@ -2,9 +2,15 @@
 
 The first ICA Project in the Symbolic Computation class of Computing B.Sc. 2021
 
+## Objectives
+
+	NOT specified yet
+	
+	Creating a chatbot that answers a sentence that corresponds to a specified structure of the English language
+
 ## Installation
 
-(TBA)
+	NOT specified yet
 
 ## Usage
 
@@ -24,8 +30,6 @@ The first ICA Project in the Symbolic Computation class of Computing B.Sc. 2021
 	Ilyas Sakhanov
 	Suliemann Al-Rustom
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. All in class.
+## TODO-list
 
-Please make sure to test updates as appropriate.
-Hey! Connection check! Ilyas S. Out!
+ 1. 
