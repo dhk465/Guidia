@@ -18,6 +18,12 @@ The first ICA Project in the Symbolic Computation class of Computing B.Sc. 2021
 
 ```
 
+## Authors
+
+	Daehee Kim
+	Ilyas Sakhanov
+	Suliemann Al-Rustom
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. All in class.
 
