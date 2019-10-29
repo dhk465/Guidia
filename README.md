@@ -28,7 +28,7 @@ The first ICA Project in the Symbolic Computation class of Computing B.Sc. (grad
 
 Daehee Kim
 Ilyas Sakhanov
-Suliemann Al-Rustom
+Sulieman Al Rustom
 
 ## TODO-list
 
