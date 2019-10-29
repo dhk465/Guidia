@@ -1,11 +1,11 @@
 # symbolic_comp_one
 
-The first ICA Project in the Symbolic Computation class of Computing B.Sc. 2021
+The first ICA Project in the Symbolic Computation class of Computing B.Sc. (grad. expected in 2021)
 
 ## Objectives
 
 	NOT specified yet
-	
+
 	Creating a chatbot that answers a sentence that corresponds to a specified structure of the English language
 
 ## Installation
@@ -26,13 +26,13 @@ The first ICA Project in the Symbolic Computation class of Computing B.Sc. 2021
 
 ## Authors
 
-	Daehee Kim
-	Ilyas Sakhanov
-	Suliemann Al-Rustom
+Daehee Kim
+Ilyas Sakhanov
+Suliemann Al-Rustom
 
 ## TODO-list
 
- 1. 
+ 1.
 
 
 ## License
