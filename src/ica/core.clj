@@ -1,4 +1,4 @@
-(ns ica1.core)
+(ns ica.core)
 
 (use 'clojure.pprint) 
 (use 'opennlp.nlp)
@@ -10,7 +10,9 @@
 (def name-find (make-name-finder "models/namefind/en-ner-person.bin"))
 (def chunker (make-treebank-chunker "models/en-chunker.bin"))
 
+(defn -main[& args]
+(println "Lmao, main"))
+
 (defn ask-tokenize [question]
   (println question)
   (tokenize (read-line)))
-
