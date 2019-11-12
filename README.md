@@ -8,9 +8,19 @@ The first ICA Project in the Symbolic Computation class of Computing B.Sc. (grad
 
 	Creating a chatbot that answers a sentence that corresponds to a specified structure of the English language
 
+##Requirement
+ 
+  [Leiningen](https://leiningen.org/) version 2.0 or higher
+
+
 ## Installation
 
-	NOT specified yet
+	This application is hosted on GitHub. You can use the commads below to download this chatbot.
+	```
+	git clone https://github.com/dhk465/symbolic_comp_one.git
+	cd symbolic_comp_one 
+	```
+	Have fun around Prague's parks!
 
 ## Usage
 
