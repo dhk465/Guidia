@@ -18,7 +18,7 @@
   (println question)
   (tokenize (read-line)))
 
-(defn word-exist? [quit-words word]
+(defn word-exists? [quit-words word]
   "It takes a word from the user and a list of quit words
   and iterates through are used to quit from the chatbot"
   (loop [lst quit-words]
@@ -30,5 +30,5 @@
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
   (loop []
-    (when-not (word-exist? quit-words (clojure.string/join " " (ask "What's on your mind?"))))
+    (when-not (word-exists? quit-words (clojure.string/join " " (ask "What's on your mind?"))))
       (recur)))
