@@ -4,22 +4,21 @@ The first ICA Project in the Symbolic Computation class of Computing B.Sc. (grad
 
 ## Objectives
 
-	NOT specified yet
+Creating a chatbot that answers a sentence(s) that correspond(s) to a specified structure of the English language
 
-	Creating a chatbot that answers a sentence that corresponds to a specified structure of the English language
+The chatbot's main theme is to inform users of Prague's thirteen major parks and their details.
 
-##Requirement
- 
-  [Leiningen](https://leiningen.org/) version 2.0 or higher
+## Requirement
 
+[Leiningen](https://leiningen.org/) version 2.0 or higher
 
 ## Installation
 
-	This application is hosted on GitHub. You can use the commads below to download this chatbot.
-	```
-	git clone https://github.com/dhk465/symbolic_comp_one.git
-	cd symbolic_comp_one 
-	```
+This application is hosted on GitHub. You can use the commads below to download this chatbot.
+```
+git clone https://github.com/dhk465/symbolic_comp_one.git
+cd symbolic_comp_one
+```
 	Have fun around Prague's parks!
 
 ## Usage
@@ -34,20 +33,9 @@ The first ICA Project in the Symbolic Computation class of Computing B.Sc. (grad
 
 ```
 
-## Authors
-
-Daehee Kim
-Ilyas Sakhanov
-Sulieman Al Rustom
-
-## TODO-list
-
- 1.
-
-
 ## License
 
-Copyright © 2019 Prague College
+Copyright © 2019 Daehee Kim, Ilyas Sakhanov, Sulieman Al Rustom
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
