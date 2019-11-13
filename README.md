@@ -10,27 +10,24 @@ The chatbot's main theme is to inform users of Prague's thirteen major parks and
 
 ## Requirement
 
-[Leiningen](https://leiningen.org/) version 2.0 or higher
+* [Leiningen](https://leiningen.org/) version 2.0 or higher
 
 ## Installation
 
-This application is hosted on GitHub. You can use the commads below to download this chatbot.
+This application is hosted on GitHub. You can use the commands below to download this chatbot.
 ```
 git clone https://github.com/dhk465/symbolic_comp_one.git
 cd symbolic_comp_one
 ```
-	Have fun around Prague's parks!
+Have fun around Prague's parks!
 
 ## Usage
 
-```clojure
+Open a terminal or cmd in the repository where project.clj is located.
 
-(defn pain [blood time soul brain eye-sight]
-	(loop victim)
-	(swap brain empty-brain)
-	...
-	(recur next-victim))
-
+Then type the line below:
+```bash
+lein run
 ```
 
 ## License
