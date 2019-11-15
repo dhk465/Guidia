@@ -1,7 +1,7 @@
 
 (defrecord Park [name dogs bicycle skating refreshment sport-fields playground architecture parking]) 
 (def lst-park 
- "It creates a vector where the data about the parks will be stored"
+ "It creates a vector where the data about the parks will be stored."
  [])
 ;;                       name     dogs cycl sktng refr sfied pgr arch prkg 
 (def Bertramka (Park. "Bertramka" nil true false true false nil  ["W.A Mozart museum"] true))
