@@ -29,8 +29,8 @@
 (def Petrin (Park. "Petřín" nil  true  true true false true nil true ))
 (def lst-park (conj lst-park Petrin))
 ;;                                  name    dogs cycl sktng refr sfied pgr arch prkg 
-(def Reigerovy-sady (Park. "Reigerovy sady" true  true  true true true true nil false))
-(def lst-park (conj lst-park Reigerovy-sady))
+(def Riegerovy-sady (Park. "Riegerovy sady" true  true  true true true true nil false))
+(def lst-park (conj lst-park Riegerovy-sady))
 ;;                        name    dogs cycl sktng refr sfied pgr arch prkg 
 (def Stromovka (Park. "Stromovka" nil  true  true true false true nil true))
 (def lst-park (conj lst-park Stromovka))
