@@ -30,5 +30,4 @@
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
   (loop []
-    (when-not (word-exists? quit-words (clojure.string/join " " (ask "What's on your mind?"))))
-      (recur)))
+    (when-not (word-exists? quit-words (clojure.string/join " " (ask "What's on your mind?")))(recur))))
