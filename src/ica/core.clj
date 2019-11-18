@@ -27,6 +27,8 @@
         true
         (recur (rest lst))))))
 
+(defn sentence-compare [input-sent stored-sent]) 
+
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
   (loop []
