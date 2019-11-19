@@ -2,7 +2,7 @@
 
 (use 'opennlp.nlp)
 (use 'opennlp.treebank)
-(use 'src.ica.parkData)
+(use 'ica.parkData)
 (def get-sentences (make-sentence-detector "models/en-sent.bin"))
 (def tokenize (make-tokenizer "models/en-token.bin"))
 (def detokenize (make-detokenizer "models/english-detokenizer.xml"))
