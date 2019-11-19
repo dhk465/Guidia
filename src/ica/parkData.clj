@@ -1,4 +1,6 @@
 
+(ns ica.parkData)
+
 (defrecord Park [name dogs bicycle skating refreshment sport-fields playground architecture parking]) 
 (def lst-park 
  "It creates a vector where the data about the parks will be appended."

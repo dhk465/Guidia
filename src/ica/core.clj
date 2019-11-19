@@ -2,6 +2,7 @@
 
 (use 'opennlp.nlp)
 (use 'opennlp.treebank)
+(use 'src.ica.parkData)
 (def get-sentences (make-sentence-detector "models/en-sent.bin"))
 (def tokenize (make-tokenizer "models/en-token.bin"))
 (def detokenize (make-detokenizer "models/english-detokenizer.xml"))
@@ -27,7 +28,9 @@
         true
         (recur (rest lst))))))
 
-(defn sentence-compare [input-sent stored-sent]) 
+; (defn sentence-compare [input-sent stored-sent]
+;   (when (< i (count [1 2 3]))
+;       (println (get [1 2 3] i))(recur (+ i 1))))
 
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
