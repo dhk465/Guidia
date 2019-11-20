@@ -14,13 +14,11 @@
 (def pos-tag (make-pos-tagger "models/en-pos-maxent.bin"))
 (def chunker (make-treebank-chunker "models/en-chunker.bin"))
 
-(def quit-words
-  "It slurps a list of words from 'quit_words.txt' that are used to quit chatbot's main loop."
-  (string/split-lines (slurp (io/reader "src/ica/quit_words.txt"))))
+(use 'ica.suggest)
 
-(def recogs
-  "It parses the strings from reg_phrases.json into a hashmap that is used to recognize certain keywords from the chat."
-  (first (cheshire/parsed-seq (io/reader "src/ica/recog_phrases.json") true)))
+(def quit-words
+  "It slurps a list of words from 'recog_phrases.json' that are used to quit chatbot's main loop."
+  (get (first (cheshire/parsed-seq (io/reader "src/ica/recog_phrases.json") true)) :quitwords))
 
 (defn ask [question]
   "It takes a string of question to show the user so that it further takes a user input.
@@ -41,6 +39,7 @@
 ;   (when (< i (count [1 2 3]))
 ;       (println (get [1 2 3] i))(recur (+ i 1))))
 
+; to-do: main with (recognize) fn
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
   (loop []

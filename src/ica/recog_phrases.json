@@ -1,4 +1,5 @@
 {
+  "quitwords": ["quit", "exit", "shutdown", "tired", "flat-tired", "shut up", "stfu", "eject", "init 0", "kys", "kill chatbot", "gameover", "disconnect"],
   "dogs": ["pet", "dog", "cat"],
   "bicycle": ["bike", "bicycle"],
   "skating": ["skate", "roller", "rollerblade", "skateboard"],
