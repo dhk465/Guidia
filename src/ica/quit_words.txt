@@ -8,3 +8,5 @@ eject
 init 0
 kys
 kill chatbot
+gameover
+disconnect

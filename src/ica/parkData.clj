@@ -1,7 +1,7 @@
 
 (ns ica.parkData)
 
-(defrecord Park [name dogs bicycle skating refreshment sport-fields playground architecture parking])
+(defrecord Park [name dogs bicycle skating refreshment sportsfield playground architecture parking])
 (def lst-park
  "It creates a vector where the data about the parks will be appended."
  [])
@@ -40,7 +40,7 @@
 (def Stromovka (Park. "Stromovka" true  true  true true false true ["Planetarium" "summer residence" "Rudolf gallery"] true))
 (def lst-park (conj lst-park Stromovka))
 ;;                      name    dogs cycl sktng refr sfied pgr arch prkg
-(def Vysehrad (Park. "Vyšehrad" nil true false true false true ["cemetory of famous people" "monument to st. Vaclav" "church of st.Petr and Pavel" "rotunda of st. Martin"] true ))
+(def Vysehrad (Park. "Vyšehrad" nil true false true false true ["cemetery of famous people" "monument to st. Vaclav" "church of st.Petr and Pavel" "rotunda of st. Martin"] true ))
 (def lst-park (conj lst-park Vysehrad))
 ;;                                name    dogs cycl sktng refr sfied pgr arch prkg
 (def Vojanovy-sady (Park. "Vojanovy sady" nil  nil  nil   nil  nil   nil  [] nil))

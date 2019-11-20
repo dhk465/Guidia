@@ -10,8 +10,8 @@
 (def chunker (make-treebank-chunker "models/en-chunker.bin"))
 
 (def quit-words
-  "It slurps a list of words from 'quit-words.txt' that are used to quit chatbot's main loop."
-  (clojure.string/split-lines (slurp (clojure.java.io/resource "ica/quit-words.txt"))))
+  "It slurps a list of words from 'quit_words.txt' that are used to quit chatbot's main loop."
+  (clojure.string/split-lines (slurp (clojure.java.io/resource "ica/quit_words.txt"))))
 
 (defn ask [question]
   "It takes a string of question to show the user so that it further takes a user input.
