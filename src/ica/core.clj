@@ -1,4 +1,9 @@
-(ns ica.core)
+(ns ica.core
+  "the main namespace to prepare the chatbot"
+  (:gen-class)
+  (:require [clojure.string :as string]
+            [clojure.java.io :as io]
+            [cheshire.core :as cheshire :refer :all]))
 
 (use 'opennlp.nlp)
 (use 'opennlp.treebank)
@@ -11,7 +16,11 @@
 
 (def quit-words
   "It slurps a list of words from 'quit_words.txt' that are used to quit chatbot's main loop."
-  (clojure.string/split-lines (slurp (clojure.java.io/resource "ica/quit_words.txt"))))
+  (string/split-lines (slurp (io/reader "src/ica/quit_words.txt"))))
+
+(def recogs
+  "It parses the strings from reg_phrases.json into a hashmap that is used to recognize certain keywords from the chat."
+  (first (cheshire/parsed-seq (io/reader "src/ica/recog_phrases.json") true)))
 
 (defn ask [question]
   "It takes a string of question to show the user so that it further takes a user input.
@@ -35,6 +44,6 @@
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
   (loop []
-    (when (not (word-exists? quit-words (clojure.string/join " " (ask "What's on your mind?"))))
+    (when (not (word-exists? quit-words (string/join " " (ask "What's on your mind?"))))
       (recur)))
   (println "Bye!"))
