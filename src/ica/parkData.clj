@@ -36,7 +36,7 @@
 ;;                                  name    dogs cycl sktng refr sfied pgr arch                       prkg
 (def Riegrovy-sady (Park. "Riegrovy sady" true  true  true true true true   ["monument to F.L.Riegr"] false))
 (def lst-park (conj lst-park Riegrovy-sady))
-;;                        name    dogs cycl sktng refr sfied pgr arch prkg
+;;                        name    dogs cycl sktng refr sfied pgr arch                                                  prkg
 (def Stromovka (Park. "Stromovka" true  true  true true false true ["Planetarium" "summer residence" "Rudolf gallery"] true))
 (def lst-park (conj lst-park Stromovka))
 ;;                      name    dogs cycl sktng refr sfied pgr arch                                                                                                         prkg
