@@ -27,6 +27,16 @@
       (if (= (first lst) word)
         true
         (recur (rest lst))))))
+(defn data-comparer [park-template input-user] 
+  (loop [prk  (rest park-template)
+         inpt  (rest input-user)]
+    (when-not (empty? prk) (println (first prk))
+    ))) 
+
+;(defn data-comparer-loop [lst-park input-user]
+ ;(loop [wrd ])
+  ;)
+(loop [x 0] (when (<= x 10) (println x) (recur (+ 1 x))))
 
 ; (defn sentence-compare [input-sent stored-sent]
 ;   (when (< i (count [1 2 3]))

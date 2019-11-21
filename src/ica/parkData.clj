@@ -1,7 +1,7 @@
 
 (ns ica.parkData)
 
-(defrecord Park [name dogs bicycle skating refreshment sport-fields playground parking architecture])
+(defrecord Park [name dogs bicycle skating refreshment sportsfield playground parking architecture])
 (def lst-park
  "It creates a vector where the data about the parks will be appended."
  [])
