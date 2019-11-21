@@ -2,7 +2,8 @@
   "a namespace that sets up the park suggestions"
   (:gen-class)
   (:require [clojure.java.io :as io]
-            [cheshire.core :as cheshire :refer :all])
+            [cheshire.core :as cheshire :refer :all]
+            [clojure.string :as string])
   (:use [ica.core :only (tokenize)]))
 
 (def recogs
@@ -14,5 +15,8 @@
   It returns a list of matched words."
   (for [word (tokenize sentence)
         feature (keys recogs)
-        :when (some #(when (= word %) %) (get recogs feature))]
+        :when (some (if (= (last word) "y")
+                      #(when (or (= word %) (= (string/join [(string/join (drop-last word)) "ies"]) %)) %)
+                      #(when (or (= word %) (= (string/join [word "s"]) %)) %))
+                    (get recogs feature))]
         word))
