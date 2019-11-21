@@ -27,6 +27,7 @@
       (if (= (first lst) word)
         true
         (recur (rest lst))))))
+
 (defn data-comparer [park-template input-user] 
   (loop [prk  (rest park-template)
          inpt  (rest input-user)]
