@@ -35,20 +35,13 @@
         true
         (recur (rest lst))))))
 
-(defn data-comparer [park-template input-user] 
-  (loop [prk  (rest park-template)
-         inpt  (rest input-user)]
-    (when-not (empty? prk) (println (first prk))
-    ))) 
+(defn data-comparer-child [position park-stored input-park]
+  "Takes a data about park and compares to the user input"
+   (= ((nth (rest (keys Bertramka )) position) input-park) 
+    ((nth (rest (keys Bertramka )) position) park-stored))
+  )
 
-;(defn data-comparer-loop [lst-park input-user]
- ;(loop [wrd ])
-  ;)
-(loop [x 0] (when (<= x 10) (println x) (recur (+ 1 x))))
-
-; (defn sentence-compare [input-sent stored-sent]
-;   (when (< i (count [1 2 3]))
-;       (println (get [1 2 3] i))(recur (+ i 1))))
+(defn data-comparer [lst-park input-user]))
 
 ; to-do: main with (recognize) fn
 (defn -main [& args]
