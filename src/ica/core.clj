@@ -41,7 +41,7 @@
     ((nth (rest (keys Bertramka )) position) park-stored))
   )
 
-(defn data-comparer [lst-park input-user]))
+(defn data-comparer [lst-park input-user])
 
 ; to-do: main with (recognize) fn
 (defn -main [& args]
