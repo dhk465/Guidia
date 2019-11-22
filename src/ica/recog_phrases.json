@@ -3,9 +3,9 @@
   "dogs": ["pet", "dog", "cat"],
   "bicycle": ["bike", "bicycle"],
   "skating": ["skate", "roller", "rollerblade", "skateboard"],
-  "refreshment": ["restaurant", "drink", "eat", "shop", "refresh"],
-  "sportsfield": ["sport", "ball", "exercise", "workout", "run", "jog", "field"],
-  "playground": ["kid", "child", "children", "play", "playground"],
+  "refreshment": ["restaurant", "drink", "eat", "shop", "refreshment"],
+  "sportsfield": ["sport", "ball", "exercise", "workout", "run", "jog", "jogging", "field"],
+  "playground": ["kid", "child", "play", "playground"],
   "parking": ["parking", "car"],
   "architecture": ["monument", "architecture", "museum", "church", "castle", "palace", "gallpery", "cemetery", "observatory", "rotunda", "summer residence", "planetarium"]
 }
