@@ -1,12 +1,15 @@
 # symbolic_comp_one
 
-The first ICA Project in the Symbolic Computation class of Computing B.Sc. (grad. expected in 2021)
+The first ICA Project in the Symbolic Computation class of Computing B.Sc.
+(grad. expected in 2021)
 
 ## Objectives
 
-Creating a chatbot that answers a sentence(s) that correspond(s) to a specified structure of the English language
+Creating a chatbot that answers a sentence(s) that correspond(s) to a specified
+structure of the English language
 
-The chatbot's main theme is to inform users of Prague's thirteen major parks and their details.
+The chatbot's main theme is to inform users of Prague's thirteen major parks
+and their details.
 
 ## Requirement
 
@@ -14,7 +17,8 @@ The chatbot's main theme is to inform users of Prague's thirteen major parks and
 
 ## Installation
 
-This application is hosted on GitHub. You can use the commands below to download this chatbot.
+This application is hosted on GitHub. You can use the commands below to
+download this chatbot.
 ```
 git clone https://github.com/dhk465/symbolic_comp_one.git
 cd symbolic_comp_one
@@ -29,6 +33,16 @@ Then type the line below:
 ```bash
 lein run
 ```
+
+## Dependencies
+
+This chatbot is dependent on a multiple of libraries that provided with
+code snippets or functions pre-defined by the coders/programmers listed below.
+
+* Hinman, M. L. [Natural Language Processing in Clojure (opennlp)](https://github.com/dakrone/clojure-opennlp) by Matthew Lee Hinman (dakrone), version 0.5.0
+* Hinman, M. L. [Cheshire Clojure JSON encoding/decoding](https://github.com/dakrone/cheshire), version 5.9.0
+* Stewart, A. [plural.core/pluralize](https://github.com/stewart/plural.clj), version 0.1.0.
+
 
 ## License
 
