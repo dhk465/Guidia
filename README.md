@@ -34,13 +34,22 @@ Then type the line below:
 lein run
 ```
 
+## Examples
+
+TODO
+
+```bash
+User=> (TBA)
+Chatbot=> (TBA)
+```
+
 ## Dependencies
 
 This chatbot is dependent on a multiple of libraries that provided with
 code snippets or functions pre-defined by the coders/programmers listed below.
 
-* Hinman, M. L. [Natural Language Processing in Clojure (opennlp)](https://github.com/dakrone/clojure-opennlp) by Matthew Lee Hinman (dakrone), version 0.5.0
-* Hinman, M. L. [Cheshire Clojure JSON encoding/decoding](https://github.com/dakrone/cheshire), version 5.9.0
+* Hinman, M. L. [Natural Language Processing in Clojure (opennlp)](https://github.com/dakrone/clojure-opennlp), version 0.5.0.
+* Hinman, M. L. [Cheshire Clojure JSON encoding/decoding](https://github.com/dakrone/cheshire), version 5.9.0.
 * Stewart, A. [plural.core/pluralize](https://github.com/stewart/plural.clj), version 0.1.0.
 
 
