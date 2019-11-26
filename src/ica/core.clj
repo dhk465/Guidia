@@ -53,7 +53,7 @@
        (recur (rest curr-parks))))
    (var-get lst-curr-park)))
 
- (defn data-comparer-main [lst-park input-park]
+ (defn data-comparer-main [lst-park input-park] ;; need fix, returns empty list if custom park is applied
   "It takes a vector with the data about parks, a record that was created from a user input,
   it returns a vector of matched parks"
    (with-local-vars [loc-lst-park lst-park]
