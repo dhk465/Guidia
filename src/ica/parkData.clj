@@ -1,9 +1,14 @@
-(ns ica.parkData)
+(ns ica.parkData
+  (:gen-class))
 
 (defrecord Park [name dogs bicycle skating refreshment sportsfield playground parking architecture])
 (def lst-park
  "It creates a vector where the data about the parks will be appended."
  [])
+
+(defn make-park [name dog cycl sktng refr spfld pgr prkg arch]
+  "It creates an instance of Park class so that other namespaces securely access to parkData."
+  (Park. name dog cycl sktng refr spfld pgr prkg arch))
 
 ;;                       name     dogs cycl sktng refr sfied pgr prkg                 arch
 (def Bertramka (Park. "Bertramka" nil true false true false nil  true ["W.A Mozart museum"]))

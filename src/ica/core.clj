@@ -3,11 +3,12 @@
   (:gen-class)
   (:require [clojure.string :as string]
             [clojure.java.io :as io]
-            [cheshire.core :as cheshire :refer :all]))
+            [cheshire.core :as cheshire :refer :all])
+  (:use [ica.parkData])
+  (:import [ica.parkData Park]))
 
 (use 'opennlp.nlp)
 (use 'opennlp.treebank)
-(use 'ica.parkData)
 (def get-sentences (make-sentence-detector "models/en-sent.bin"))
 (def tokenize (make-tokenizer "models/en-token.bin"))
 (def detokenize (make-detokenizer "models/english-detokenizer.xml"))
@@ -37,12 +38,12 @@
 
 (defn data-comparer-helper-1 [position park-stored input-park]
   "It takes a data about park and compares to data inputed by a user for one parameter."
-   (= ((nth (rest (keys Bertramka )) position) input-park) 
-    ((nth (rest (keys Bertramka )) position) park-stored)))
+   (= ((nth (rest (keys Bertramka)) position) input-park)
+    ((nth (rest (keys Bertramka)) position) park-stored)))
 
  (defn data-comparer-helper-2 [position input-lst-park input-park]
-  "It takes in a list of parks, user inputted data and a parameter, 
-  adds the park to a locally stored vector if the chosen parameter in the park 
+  "It takes in a list of parks, user inputted data and a parameter,
+  adds the park to a locally stored vector if the chosen parameter in the park
  and user inputted data matches. Returns that vector of parks."
   (with-local-vars [lst-curr-park []]
     (loop [curr-parks input-lst-park]
