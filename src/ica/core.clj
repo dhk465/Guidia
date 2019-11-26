@@ -28,7 +28,7 @@
 
 (defn word-exists? [quit-words word]
   "It takes a word from the user and a list of quit words
-  and iterates through are used to quit from the chatbot"
+  and iterates through are used to quit from the chatbot."
   (loop [lst quit-words]
     (when (seq lst)
       (if (= (first lst) word)
@@ -36,15 +36,15 @@
         (recur (rest lst))))))
 
 (defn data-comparer-helper-1 [position park-stored input-park]
-  "Takes a data about park and compares to data inputed by a user for one parameter"
+  "It takes a data about park and compares to data inputed by a user for one parameter."
    (= ((nth (rest (keys Bertramka )) position) input-park) 
     ((nth (rest (keys Bertramka )) position) park-stored))
   )
 
  (defn data-comparer-helper-2 [position input-lst-park input-park]
-  "Takes in a list of parks, user inputted data and a parameter, 
+  "It takes in a list of parks, user inputted data and a parameter, 
   adds the park to a locally stored vector if the chosen parameter in the park 
- and user inputted data matches. Returns that vector of parks"
+ and user inputted data matches. Returns that vector of parks."
   (with-local-vars [lst-curr-park []]
     (loop [curr-parks input-lst-park]
       (when-not  (empty? curr-parks)
@@ -54,11 +54,23 @@
     (recur (rest curr-parks))
       )
     )
-  (println (var-get lst-curr-park))  
+   (var-get lst-curr-park)
   )
  )
 
- (defn data-comparer-main [lst-park input-park])
+ (defn data-comparer-main [lst-park input-park]
+  "It takes a vector with the data about parks, a record that was created from a user input,
+  it returns a vector of matched parks"
+   (with-local-vars [loc-lst-park lst-park]
+   (loop [position 0]
+    (when (<= position 7 )
+     (var-set loc-lst-park (data-comparer-helper-2 position @loc-lst-park input-park))
+     (recur (+ position 1))
+    )
+   )
+   (var-get loc-lst-park)
+  )
+ )
 
 ; to-do: main with (recognize) fn
 (defn -main [& args]
