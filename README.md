@@ -1,12 +1,15 @@
 # symbolic_comp_one
 
-The first ICA Project in the Symbolic Computation class of Computing B.Sc. (grad. expected in 2021)
+The first ICA Project in the Symbolic Computation class of Computing B.Sc.
+(grad. expected in 2021)
 
 ## Objectives
 
-Creating a chatbot that answers a sentence(s) that correspond(s) to a specified structure of the English language
+Creating a chatbot that answers a sentence(s) that correspond(s) to a specified
+structure of the English language
 
-The chatbot's main theme is to inform users of Prague's thirteen major parks and their details.
+The chatbot's main theme is to inform users of Prague's thirteen major parks
+and their details.
 
 ## Requirement
 
@@ -14,7 +17,8 @@ The chatbot's main theme is to inform users of Prague's thirteen major parks and
 
 ## Installation
 
-This application is hosted on GitHub. You can use the commands below to download this chatbot.
+This application is hosted on GitHub. You can use the commands below to
+download this chatbot.
 ```
 git clone https://github.com/dhk465/symbolic_comp_one.git
 cd symbolic_comp_one
@@ -29,6 +33,30 @@ Then type the line below:
 ```bash
 lein run
 ```
+
+## Examples
+
+TODO
+
+```bash
+User=> (TBA)
+Chatbot=> (TBA)
+```
+
+## Dependencies
+
+This chatbot is dependent on a multiple of libraries that provided with
+code snippets or functions pre-defined by the coders/programmers listed below.
+
+* Hinman, M. L.. (2018) '[Natural Language Processing in Clojure (opennlp)](https://github.com/dakrone/clojure-opennlp)', _GitHub_, 0.5.0.
+* Hinman, M. L.. (2019) '[Cheshire Clojure JSON encoding/decoding](https://github.com/dakrone/cheshire)', _GitHub_, 5.9.0.
+* Stewart, A.. (2014) '[plural.core/pluralize](https://github.com/stewart/plural.clj)', _GitHub_, 0.1.0.
+
+
+## References
+
+Praha.eu (2019) PRAŽSKÉ PARKY. Available at: http://www.praha.eu/jnp/cz/co_delat_v_praze/parky/index.html [Accessed: 14 November 2019].
+
 
 ## License
 
