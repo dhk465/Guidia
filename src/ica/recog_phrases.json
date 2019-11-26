@@ -4,8 +4,8 @@
   "bicycle": ["bike", "bicycle", "wheel", "cycle", "kolo"],
   "skating": ["skate", "roller", "rollerblade", "skateboard", "ramp", "skating ramp"],
   "refreshment": ["restaurant", "drink", "eat", "shop", "refresh", "bar", "beer", "pivo", "kozel", "wine", "cola", "kofola", "food", "hungry", "feed me", "kebab", "juice", "dessert", "gin", "tonic", "water", "vodka", "coffee", "kava", "late", "cappuccino", "branik", "ipa", "jamson", "ice cream", "sweets", "chips"],
-  "sportsfield": ["sport", "ball", "exercise", "workout", "run", "jog", "field", "walk", "hike", "hiking", "climbe", "football", "basketball", "tennis"],
+  "sportsfield": ["sport", "ball", "exercise", "workout", "run", "jog", "field", "walk", "hike", "hiking", "climbe", "football", "basketball", "tennis", "hiking trail"],
   "playground": ["kid", "child", "children", "play", "playground", "kids", "sand", "swing", "hut"],
-  "parking": ["parking", "car", "free parking", "paid parking", "can I park"],
-  "architecture": ["monument", "architecture", "museum", "church", "castle", "palace", "gallpery", "cemetery", "observatory", "rotunda", "summer residence", "planetarium"]
+  "parking": ["parking", "car", "free parking", "paid parking", "can I park", "parking allowed"],
+  "architecture": ["monument", "architecture", "museum", "church", "castle", "palace", "gallpery", "cemetery", "observatory", "rotunda", "summer residence", "planetarium", "romanesque", "gothic", "renaissance", "baroque", "rococo", "cubism", "modern art"]
 }
