@@ -1,4 +1,3 @@
-
 (ns ica.parkData)
 
 (defrecord Park [name dogs bicycle skating refreshment sportsfield playground parking architecture])
