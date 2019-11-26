@@ -35,13 +35,30 @@
         true
         (recur (rest lst))))))
 
-(defn data-comparer-child [position park-stored input-park]
-  "Takes a data about park and compares to the user input"
+(defn data-comparer-helper-1 [position park-stored input-park]
+  "Takes a data about park and compares to data inputed by a user for one parameter"
    (= ((nth (rest (keys Bertramka )) position) input-park) 
     ((nth (rest (keys Bertramka )) position) park-stored))
   )
 
-(defn data-comparer [lst-park input-user])
+ (defn data-comparer-helper-2 [position input-lst-park input-park]
+  "Takes in a list of parks, user inputted data and a parameter, 
+  adds the park to a locally stored vector if the chosen parameter in the park 
+ and user inputted data matches. Returns that vector of parks"
+  (with-local-vars [lst-curr-park []]
+    (loop [curr-parks input-lst-park]
+      (when-not  (empty? curr-parks)
+       (if  (= (data-comparer-helper-1 position (first curr-parks) input-park) true)
+        (var-set lst-curr-park (conj @lst-curr-park (first curr-parks)))
+       )
+    (recur (rest curr-parks))
+      )
+    )
+  (println (var-get lst-curr-park))  
+  )
+ )
+
+ (defn data-comparer-main [lst-park input-park])
 
 ; to-do: main with (recognize) fn
 (defn -main [& args]
