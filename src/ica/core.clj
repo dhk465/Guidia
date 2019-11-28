@@ -12,13 +12,13 @@
   "It slurps a list of words from 'recog_phrases.json' that are used to quit chatbot's main loop."
   (get (first (cheshire/parsed-seq (io/reader "src/ica/recog_phrases.json") true)) :quitwords))
 
-(defn ask [question]
+(defn ask [question] ;; not used anywhere, exists here in case it will be needed
   "It takes a string of question to show the user so that it further takes a user input.
   It returns the user input as a lazy-seq of tokenized words/strings."
   (println question)
   (tokenize (read-line)))
 
-(defn word-exists? [quit-words word]
+(defn word-exists? [quit-words word] ;; not used anywhere, exists here in case it will be needed
   "It takes a word from the user and a list of quit words
   and iterates through are used to quit from the chatbot."
   (loop [lst quit-words]
