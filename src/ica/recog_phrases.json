@@ -6,6 +6,6 @@
   "refreshment": ["restaurant", "drink", "eat", "shop", "refresh", "bar", "beer", "pivo", "kozel", "wine", "cola", "kofola", "food", "hungry", "feed me", "kebab", "juice", "dessert", "gin", "tonic", "water", "vodka", "coffee", "kava", "late", "cappuccino", "branik", "ipa", "jamson", "ice cream", "sweets", "chips"],
   "sportsfield": ["sport", "ball", "exercise", "workout", "run", "jog", "field", "walk", "hike", "hiking", "climbe", "football", "basketball", "tennis", "hiking trail"],
   "playground": ["kid", "child", "children", "play", "playground", "kids", "sand", "swing", "hut", "slide", "nets", "climbers", "trails"],
-  "parking": ["parking", "car", "free parking", "paid parking", "can I park", "parking allowed"],
+  "parking": ["parking", "car", "free parking", "paid parking", "can i park", "parking allowed"],
   "architecture": ["monument", "architecture", "museum", "church", "castle", "palace", "gallpery", "cemetery", "observatory", "rotunda", "summer residence", "planetarium", "romanesque", "gothic", "renaissance", "baroque", "rococo", "cubism", "modern art"]
 }
