@@ -16,10 +16,9 @@
   It prints out greetings and (TODO: more contents)."
   (loop [grts greetings]
     (when-not (empty? grts)
-      (for [timer "..."]
-        (do
-          (print timer)
-          (Thread/sleep 1000)))
+      (doseq [timer "..."]
+        (print timer)
+        (Thread/sleep 1000))
       (println (first grts))
       (recur (rest grts))))
 
