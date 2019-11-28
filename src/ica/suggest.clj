@@ -2,10 +2,9 @@
   "a namespace that sets up the park suggestions"
   (:gen-class)
   (:require [clojure.java.io :as io]
-            [cheshire.core :as cheshire :refer :all]
-            [clojure.string :as string])
-  (:use [ica.core :only (tokenize)])
-  (:use [plural.core]))
+            [cheshire.core :as cheshire :refer :all])
+  (:use [plural.core]
+        [ica.opennlp :only (tokenize)]))
 
 (def recogs
   "It parses the strings from reg_phrases.json into a hashmap that is used to recognize certain keywords from the chat."

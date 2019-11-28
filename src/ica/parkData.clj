@@ -1,4 +1,5 @@
 (ns ica.parkData
+  "a namespace that contains information about Prague's parks"
   (:gen-class))
 
 (defrecord Park [name dogs bicycle skating refreshment sportsfield playground parking architecture])
