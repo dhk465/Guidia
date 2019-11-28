@@ -10,9 +10,9 @@
     ((nth (rest (keys Bertramka)) position) park-stored)))
 
 (defn data-comparer-helper-2 [position input-lst-park input-park]
-  "It takes in a list of parks, user input data and a key parameter.
-  It then adds the park to a locally stored vector if the chosen parameter in the park
-  and user input data matches. It returns a vector of matching parks."
+  "It takes in a list of parks, user inputted data and a parameter,
+  adds the park to a locally stored vector if the chosen parameter in the park
+ and user inputted data matches. Returns that vector of parks."
   (with-local-vars [lst-curr-park []]
     (loop [curr-parks input-lst-park]
       (when-not  (empty? curr-parks)
