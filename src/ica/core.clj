@@ -4,7 +4,9 @@
   (:require [clojure.java.io :as io]
             [cheshire.core :as cheshire :refer :all])
   (:use [ica.opennlp :only (tokenize)]
-        [ica.interface :only (interface)]))
+        [ica.interface :only (interface)]
+        [ica.parkData])
+  (:import [ica.parkData Park]))
 
 (def quit-words
   "It slurps a list of words from 'recog_phrases.json' that are used to quit chatbot's main loop."
@@ -28,5 +30,5 @@
 ; to-do: main with (recognize) fn
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
-  (interface [])
+  (interface lst-park)
   (println "Bye!"))
