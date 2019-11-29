@@ -4,7 +4,7 @@
   (:require [clojure.java.io :as io]
             [cheshire.core :as cheshire :refer :all])
   (:use [ica.opennlp :only (tokenize)]
-        [ica.interface :only (interface)]
+        ;[ica.interface :only (interface)]
         [ica.parkData])
   (:import [ica.parkData Park]))
 
@@ -27,8 +27,57 @@
         true
         (recur (rest lst))))))
 
+(defn data-comparer-helper-1 [position park-stored input-park]
+  "It takes a data about park and compares to data inputed by a user for one parameter."
+   (= ((nth (rest (keys Bertramka)) position) input-park)
+    ((nth (rest (keys Bertramka)) position) park-stored)))
+
+(defn data-comparer-helper-2 [park-stored input-park]
+  "It takes in a list of parks, user inputted data and a parameter,
+  adds the park to a locally stored vector if the chosen parameter in the park
+ and user inputted data matches. Returns that vector of parks."
+   (with-local-vars [counter 0]
+    (loop [position 0]
+      (when (<= position 7)
+       (if  (= (data-comparer-helper-1 position park-stored input-park) true)
+        (var-set counter (+ 1 @counter))
+       )
+       (recur (+ 1 position))
+      )
+    )
+   (var-get counter)
+   )
+ )
+
+(defn data-comparer-helper-3 [lst-park input-park]
+  (with-local-vars [simularity-count-vector []]
+   (loop [lst-park-loc lst-park]
+    (when-not (empty? lst-park-loc)
+     (var-set simularity-count-vector (conj @simularity-count-vector (data-comparer-helper-2 (first lst-park-loc) input-park)))
+     (recur (rest lst-park-loc))
+    )
+   )
+   (var-get simularity-count-vector)
+  )
+)
+
+(defn data-comparer-main [lst-park input-park] ;; not ready, dont use
+  (with-local-vars [highest-match-counter 0
+                    matched-parks-vec [] ]
+   (let [simularity-count-vector (data-comparer-helper-3 lst-park input-park)]
+    (doseq [simularity-counter simularity-count-vector]
+     (if (< highest-match-counter simularity-counter)
+      (var-set highest-match-counter simularity-counter)
+     )
+    )
+   )
+  (var-get highest-match-counter)
+ )
+)
+
+
 ; to-do: main with (recognize) fn
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
-  (interface lst-park)
+  ;(interface lst-park)
   (println "Bye!"))
