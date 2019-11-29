@@ -27,13 +27,13 @@
         true
         (recur (rest lst))))))
 
-(defn data-comparer-helper-1 [position park-stored input-park]
+(defn data-comparer-helper-1 [position park-stored input-park] ;;rewrite docstring
   "It takes a data about park and compares to data inputed by a user for one parameter."
    (= ((nth (rest (keys Bertramka)) position) input-park)
     ((nth (rest (keys Bertramka)) position) park-stored)))
 
-(defn data-comparer-helper-2 [park-stored input-park]
-  "It takes in a list of parks, user inputted data and a parameter,
+(defn data-comparer-helper-2 [park-stored input-park]  ;;rewrite docstring
+  "It takes in a list of parks, user inputted data and a parameter, 
   adds the park to a locally stored vector if the chosen parameter in the park
  and user inputted data matches. Returns that vector of parks."
    (with-local-vars [counter 0]
@@ -61,20 +61,28 @@
   )
 )
 
-(defn data-comparer-main [lst-park input-park] ;; not ready, dont use
+(defn data-comparer-main [lst-park input-park] ;; bug in the code
   (with-local-vars [highest-match-counter 0
                     matched-parks-vec [] ]
    (let [simularity-count-vector (data-comparer-helper-3 lst-park input-park)]
     (doseq [simularity-counter simularity-count-vector]
-     (if (< highest-match-counter simularity-counter)
+     (if (< @highest-match-counter simularity-counter)
       (var-set highest-match-counter simularity-counter)
      )
     )
+   (loop [position 0]
+    (when (< position (count lst-park))
+     (if 
+      (= (nth simularity-count-vector position) highest-match-counter) ;; this condition is never met. Why?
+        (var-set matched-parks-vec (conj @matched-parks-vec (nth lst-park position)))
+     )
+    (recur (+ 1 position))
+    )
    )
-  (var-get highest-match-counter)
+   (var-get matched-parks-vec)
+  )
  )
 )
-
 
 ; to-do: main with (recognize) fn
 (defn -main [& args]
