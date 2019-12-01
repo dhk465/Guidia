@@ -40,48 +40,40 @@
     (loop [position 0]
       (when (<= position 7)
        (if  (= (data-comparer-helper-1 position park-stored input-park) true)
-        (var-set counter (+ 1 @counter))
-       )
-       (recur (+ 1 position))
-      )
-    )
-   (var-get counter)
-   )
- )
+        (var-set counter (+ 1 @counter)))
+       (recur (+ 1 position))))
+   (var-get counter)))
 
 (defn data-comparer-helper-3 [lst-park input-park]
-  (with-local-vars [simularity-count-vector []]
+  (with-local-vars [simularity-count-vec []]
    (loop [lst-park-loc lst-park]
     (when-not (empty? lst-park-loc)
-     (var-set simularity-count-vector (conj @simularity-count-vector (data-comparer-helper-2 (first lst-park-loc) input-park)))
-     (recur (rest lst-park-loc))
-    )
-   )
-   (var-get simularity-count-vector)
-  )
-)
+     (var-set simularity-count-vec (conj @simularity-count-vec (data-comparer-helper-2 (first lst-park-loc) input-park)))
+     (recur (rest lst-park-loc))))
+   (var-get simularity-count-vec)))
 
-(defn data-comparer-main [lst-park input-park] ;; bug in the code
-  (with-local-vars [highest-match-counter 0
-                    matched-parks-vec [] ]
-   (let [simularity-count-vector (data-comparer-helper-3 lst-park input-park)]
-    (doseq [simularity-counter simularity-count-vector]
-     (if (< @highest-match-counter simularity-counter)
-      (var-set highest-match-counter simularity-counter)
-     )
-    )
+(defn data-comparer-helper-4 [lst-park simularity-count-vec highest-match-counter]
+  (with-local-vars [matched-parks-vec []]
    (loop [position 0]
     (when (< position (count lst-park))
      (if 
-      (= (nth simularity-count-vector position) highest-match-counter) ;; this condition is never met. Why?
-        (var-set matched-parks-vec (conj @matched-parks-vec (nth lst-park position)))
-     )
-    (recur (+ 1 position))
-    )
+      (= (nth simularity-count-vec position) highest-match-counter)
+       (var-set matched-parks-vec (conj @matched-parks-vec (nth lst-park position))))
+     (recur (+ 1 position))))
+   (var-get matched-parks-vec)))
+
+(defn data-comparer-helper-5 simularity-count-vec
+   (with-local-vars [highest-match-counter 0]
+   (doseq [simularity-counter simularity-count-vec]
+     (if (< @highest-match-counter simularity-counter)
+      (var-set highest-match-counter simularity-counter)))
+   (var-get highest-match-counter)))
+
+(defn data-comparer-main [lst-park input-park] ;; bug in the code
+   (let* [simularity-count-vec (data-comparer-helper-3 lst-park input-park)
+    highest-match-counter (data-comparer-helper-5 simularity-count-vec)]
+    (data-comparer-helper-4 lst-park simularity-count-vec highest-match-counter)
    )
-   (var-get matched-parks-vec)
-  )
- )
 )
 
 ; to-do: main with (recognize) fn
