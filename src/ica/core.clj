@@ -4,8 +4,9 @@
   (:require [clojure.java.io :as io]
             [cheshire.core :as cheshire :refer :all])
   (:use [ica.opennlp :only (tokenize)]
-        ;[ica.interface :only (interface)]
-        [ica.parkData])
+        [ica.parkData]
+        [ica.suggest]
+        [inflections.core])
   (:import [ica.parkData Park]))
 
 (def quit-words
@@ -33,55 +34,65 @@
     ((nth (rest (keys Bertramka)) position) park-stored)))
 
 (defn data-comparer-helper-2 [park-stored input-park]  ;;rewrite docstring
-  "It takes in a list of parks, user inputted data and a parameter, 
+  "It takes in a list of parks, user inputted data and a parameter,
   adds the park to a locally stored vector if the chosen parameter in the park
- and user inputted data matches. Returns that vector of parks."
-   (with-local-vars [counter 0]
-    (loop [position 0]
-      (when (<= position 7)
-       (if  (= (data-comparer-helper-1 position park-stored input-park) true)
-        (var-set counter (+ 1 @counter)))
-       (recur (+ 1 position))))
-   (var-get counter)))
+  and user inputted data matches. Returns that vector of parks."
+  (with-local-vars [counter 0]
+    (doseq [position (range 7)]
+      (if (data-comparer-helper-1 position park-stored input-park)
+        (var-set counter (+ 1 @counter))))
+    (var-get counter)))
 
 (defn data-comparer-helper-3 [lst-park input-park]
-  (with-local-vars [simularity-count-vec []]
+  (with-local-vars [sim-vector []]
    (loop [lst-park-loc lst-park]
     (when-not (empty? lst-park-loc)
-     (var-set simularity-count-vec (conj @simularity-count-vec (data-comparer-helper-2 (first lst-park-loc) input-park)))
+     (var-set sim-vector (conj @sim-vector (data-comparer-helper-2 (first lst-park-loc) input-park)))
      (recur (rest lst-park-loc))))
-   (var-get simularity-count-vec)))
+   (var-get sim-vector)))
 
-(defn data-comparer-helper-4 [lst-park simularity-count-vec highest-match-counter]
-  (with-local-vars [matched-parks-vec []]
-   (loop [position 0]
-    (when (< position (count lst-park))
-     (if 
-      (= (nth simularity-count-vec position) highest-match-counter)
-       (var-set matched-parks-vec (conj @matched-parks-vec (nth lst-park position))))
-     (recur (+ 1 position))))
-   (var-get matched-parks-vec)))
+(defn data-comparer-helper-4 [lst-park sim-vector highest]
+  (with-local-vars [park-matches []]
+    (loop [position 0]
+      (when (< position (count lst-park))
+        (if (= (nth sim-vector position) highest)
+          (var-set park-matches (conj @park-matches (nth lst-park position))))
+        (recur (+ 1 position))))
+    (var-get park-matches)))
 
-(defn data-comparer-find-max [simularity-count-vec]
-   (with-local-vars [highest-match-counter 0]
-   (doseq [simularity-counter simularity-count-vec]
-     (if (< @highest-match-counter simularity-counter)
-      (var-set highest-match-counter simularity-counter)
-     )
-    )
-   (var-get highest-match-counter)
-   )
-)
+(defn data-comparer-find-max [sim-vector]
+  (with-local-vars [highest 0]
+    (doseq [sim-counter sim-vector]
+      (if (< @highest sim-counter)
+        (var-set highest sim-counter)))
+    (var-get highest)))
 
- (defn data-comparer-main [lst-park input-park] ;; bug in the code
-    (let* [simularity-count-vec (data-comparer-helper-3 lst-park input-park)
-     highest-match-counter (data-comparer-find-max simularity-count-vec)]
-     (data-comparer-helper-4 lst-park simularity-count-vec highest-match-counter)
-    )
- )
+(defn data-comparer-main [lst-park input-park] ;; bug in the code
+   (let* [sim-vector (data-comparer-helper-3 lst-park input-park)
+          highest (data-comparer-find-max sim-vector)]
+     (data-comparer-helper-4 lst-park sim-vector highest)))
 
-; to-do: main with (recognize) fn
+(def bot-name "Guidia")
+
+(def greetings
+  "It contains a vector of greetings that are printed in the beginning of the chat."
+  [(format "Hello, my name is %s, your guide to Prague parks." bot-name)
+  "Tell me what you would like to see or like to do in Prague."
+  "I can suggest a park in Prague for you."])
+
+(defn interface [lst-park]
+  "It contains a procedural structure of a chatbot interface.
+  It prints out greetings and (TODO: more contents)."
+  (loop [grts greetings]
+    (when-not (empty? grts)
+      (doseq [timer "..."]
+        (print timer)
+        (Thread/sleep 1000))
+      (println (first grts))
+      (recur (rest grts))))
+
+  (data-comparer-main lst-park (read-line)))
+
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
-  ;(interface lst-park)
   (println "Bye!"))

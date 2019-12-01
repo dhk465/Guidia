@@ -6,6 +6,5 @@
   "refreshment": ["restaurant", "drink", "eat", "shop", "refreshment"],
   "sportsfield": ["sport", "ball", "exercise", "workout", "run", "jog", "jogging", "field"],
   "playground": ["kid", "child", "play", "playground"],
-  "parking": ["parking", "car"],
-  "architecture": ["monument", "architecture", "museum", "church", "castle", "palace", "gallpery", "cemetery", "observatory", "rotunda", "summer residence", "planetarium"]
-}
+  "parking": ["parking", "car"]
+  }
