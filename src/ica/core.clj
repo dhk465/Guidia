@@ -92,7 +92,7 @@
            (do
             (print (:name (first comparer-res)))
             (print ", ")))
-          (recur (rest comparer-res)))))))) 
+          (recur (rest comparer-res))))))))
 
 (def bot-name "Guidia")
 
@@ -102,7 +102,7 @@
   "Tell me what you would like to see or like to do in Prague."
   "I can suggest a park in Prague for you."])
 
-(defn interface [lst-park]
+(defn greet [lst-park]
   "It contains a procedural structure of a chatbot interface.
   It prints out greetings and (TODO: more contents)."
   (loop [grts greetings]
@@ -111,9 +111,18 @@
         (print timer)
         (Thread/sleep 1000))
       (println (first grts))
-      (recur (rest grts))))
+      (recur (rest grts)))))
 
-  (data-comparer-main lst-park (read-line)))
+(defn interface []
+   (with-local-vars [user-input nil
+                     matches nil
+                     ]
+    (var-set user-input (read-line))                     
+    (get-userpark user-input)
+    (var-set matches (data-comparer-main lst-park user-park))
+    (print-names matches)
+
+     ))
 
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
