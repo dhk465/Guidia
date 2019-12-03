@@ -43,6 +43,14 @@ User=> (TBA)
 Chatbot=> (TBA)
 ```
 
+
+## Limitations
+
+Negative sentences from the user-input do not register as false in the record, meaning that users cannot make a negative wish.
+phrases containing "or" are both considered as "and"
+no verb conjugations that the chatbot does not recognize verb forms that are not present in the json (eat != eating)
+
+
 ## Dependencies
 
 This chatbot is dependent on a multiple of libraries that provided with
