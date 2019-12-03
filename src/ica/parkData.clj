@@ -1,52 +1,85 @@
 (ns ica.parkData
-  (:gen-class))
+  "a namespace that contains information about Prague's parks"
+  (:gen-class)
+  (:require [clojure.java.io :as io]
+            [cheshire.core :as cheshire :refer :all])
+  (:use [inflections.core]
+        [ica.opennlp :only (tokenize)]))
 
-(defrecord Park [name dogs bicycle skating refreshment sportsfield playground parking architecture])
+(defrecord Park [name dogs bicycle skating refreshment sportsfield playground parking])
 (def lst-park
  "It creates a vector where the data about the parks will be appended."
  [])
 
-(defn make-park [name dog cycl sktng refr spfld pgr prkg arch]
-  "It creates an instance of Park class so that other namespaces securely access to parkData."
-  (Park. name dog cycl sktng refr spfld pgr prkg arch))
+(def user-park (Park. "user" (ref nil) (ref nil) (ref nil) (ref nil) (ref nil) (ref nil) (ref nil)))
 
-;;                       name     dogs cycl sktng refr sfied pgr prkg                 arch
-(def Bertramka (Park. "Bertramka" nil true false true false nil  true ["W.A Mozart museum"]))
+(def Bertramka (Park. "Bertramka" (ref nil) (ref true) (ref false) (ref true) (ref false) (ref nil)  (ref true)))
 (def lst-park (conj lst-park Bertramka ))
-
-;;                                                 name    dogs cycl sktng refr sfied pgr prkg   arch
-(def Frantiskanska-zahrada (Park. "Františkánská zahrada" false true false true false true false []))
+(def Frantiskanska-zahrada (Park. "Františkánská zahrada" (ref false) (ref true) (ref false) (ref true) (ref false) (ref true) (ref false)))
 (def lst-park (conj lst-park Frantiskanska-zahrada))
-;;                              name    dogs cycl  sktng  refr sfied pgr   prkg          arch
-(def Obora-hvezda (Park. "Obora Hvězda" true true  false  true false true true ["summer residence"] ))
+(def Obora-hvezda (Park. "Obora Hvězda" (ref true) (ref true)  (ref false)  (ref true) (ref false) (ref true) (ref true)))
 (def lst-park (conj lst-park Obora-hvezda))
-;;                 name   dogs cycl sktng refr sfied pgr   prkg   arch
-(def Kampa (Park. "Kampa" nil true  true  true false true  false ["Kampa museum"]))
+(def Kampa (Park. "Kampa" (ref nil) (ref true)  (ref true)  (ref true) (ref false) (ref true)  (ref false)))
 (def lst-park (conj lst-park Kampa))
-;;                                       name   dogs cycl sktng refr spfld pgr   prkg  arch
-(def Kinskeho-zahrada (Park. "Kínského zahrada" nil false false true false true false ["church of st. Michal" "monument to Hana Kvapilová"]))
+(def Kinskeho-zahrada (Park. "Kínského zahrada" (ref nil) (ref false) (ref false) (ref true) (ref false) (ref true) (ref false)))
 (def lst-park (conj lst-park Kinskeho-zahrada))
-;;                       name   dogs cycl  sktng  refr sfied pgr prkg       arch
-(def Klamovka (Park. "Klamovka" true false false true false true true ["small castle represented as a restaurant"]))
+(def Klamovka (Park. "Klamovka" (ref true) (ref false) (ref false) (ref true) (ref false) (ref true) (ref true)))
 (def lst-park (conj lst-park Klamovka))
-;;                         name   dogs cycl sktng  refr sfied pgr  prkg arch
-(def Landronka (Park. "Landronka" true false true  true false true true []))
+(def Landronka (Park. "Landronka" (ref true) (ref false) (ref true)  (ref true) (ref false) (ref true) (ref true)))
 (def lst-park (conj lst-park Landronka))
-;;                  name dogs  cycl sktng refr sfied pgr prkg arch
-(def Letna (Park. "Letná" nil false true true false true true ["monument to sculptor Vratislav Karl Novák" "small castle: Letenský zámeček"]))
+(def Letna (Park. "Letná" (ref nil) (ref false) (ref true) (ref true) (ref false) (ref true) (ref true)))
 (def lst-park (conj lst-park Letna))
-;;                  name    dogs cycl sktng refr sfied pgr  prkg   arch
-(def Petrin (Park. "Petřín" nil  true  true true false true  true ["astronomical observatory" ]))
+(def Petrin (Park. "Petřín" (ref nil)  (ref true)  (ref true) (ref true) (ref false) (ref true)  (ref true)))
 (def lst-park (conj lst-park Petrin))
-;;                                  name    dogs cycl sktng refr sfied pgr   prkg  arch
-(def Riegrovy-sady (Park. "Riegrovy sady" true  true  true true  true true  false ["monument to F.L.Riegr"]))
+(def Riegrovy-sady (Park. "Riegrovy sady" (ref true)  (ref true)  (ref true) (ref true)  (ref true) (ref true)  (ref false)))
 (def lst-park (conj lst-park Riegrovy-sady))
-;;                        name    dogs cycl sktng refr  sfied pgr  prkg arch
-(def Stromovka (Park. "Stromovka" true  true  true true false true true ["Planetarium" "summer residence" "Rudolf gallery"]))
+(def Stromovka (Park. "Stromovka" (ref true)  (ref true)  (ref true) (ref true) (ref false) (ref true) (ref true)))
 (def lst-park (conj lst-park Stromovka))
-;;                      name    dogs cycl sktng refr sfied pgr prkg arch
-(def Vysehrad (Park. "Vyšehrad" nil true false true false true true ["cemetory of famous people" "monument to st. Vaclav" "church of st.Petr and Pavel" "rotunda of st. Martin"]))
+(def Vysehrad (Park. "Vyšehrad" (ref nil) (ref true) (ref false) (ref true) (ref false) (ref true) (ref true)))
 (def lst-park (conj lst-park Vysehrad))
-;;                                name    dogs cycl sktng refr sfied pgr  prkg arch
-(def Vojanovy-sady (Park. "Vojanovy sady" nil  nil  nil   nil  nil   nil  nil  []))
+(def Vojanovy-sady (Park. "Vojanovy sady" (ref nil) (ref nil) (ref nil) (ref nil) (ref nil) (ref nil) (ref nil)))
 (def lst-park (conj lst-park Vojanovy-sady))
+
+(def recogs
+  "It parses the strings from reg_phrases.json into a hashmap that is used to recognize certain keywords from the chat."
+  (first (cheshire/parsed-seq (io/reader "src/ica/recog_phrases.json") true)))
+
+(defn recognize [sentence]
+  "It reads a string and checks if there is anything in the string that matches
+  the words in recog_phrases.json. It returns a list of hashmaps containing keys and matched words."
+  (for [phrase (tokenize sentence)
+        key (keys recogs)
+        :when (some #(when (= (singular phrase) %) %) (get recogs key))]
+        (when-not (= key :negative)
+          (hash-map key (singular phrase)))))
+
+(defn recognize-neg [sentence]
+  "It returns true if the input sentence contains a negative expression."
+  (with-local-vars [stat false]
+    (loop [phrases (tokenize sentence)]
+      (when-not (empty? phrases)
+        (if (some #(when (= (first phrases) %) %) (get recogs :negative))
+          (var-set stat (not @stat))
+          (recur (rest phrases)))))
+    @stat))
+
+(defn get-usermaps [sentence]
+  (with-local-vars [klice '()]
+    (loop [mapper (recognize sentence)]
+      (if (empty? mapper)
+        (merge (map #(assoc {} (first %) (not (recognize-neg sentence))) (var-get klice)))
+        (when (not (recognize-neg sentence))
+          (var-set klice (conj @klice (keys (first mapper))))
+          (recur (rest mapper)))))))
+
+(defn reset-userpark []
+  (loop [klice (rest (keys Bertramka))]
+    (when-not (empty? klice)
+      (dosync (ref-set ((first klice) user-park) nil))
+      (recur (rest klice)))))
+
+(defn get-userpark [sentence]
+  (loop [lst-usermaps (get-usermaps sentence)]
+    (when-not (empty? lst-usermaps)
+      (dosync (ref-set ((first (keys (first lst-usermaps))) user-park) (first (vals (first lst-usermaps)))))
+      (recur (rest lst-usermaps)))))
