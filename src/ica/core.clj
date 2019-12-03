@@ -5,7 +5,6 @@
             [cheshire.core :as cheshire :refer :all])
   (:use [ica.opennlp :only (tokenize)]
         [ica.parkData]
-        [ica.suggest]
         [inflections.core])
   (:import [ica.parkData Park]))
 
@@ -30,9 +29,9 @@
 
 (defn data-comparer-helper-1 [position park-stored input-park] ;;rewrite docstring
   "It takes a data about park and compares to data inputed by a user for one parameter."
-   (and 
-    (= true ((nth (rest (keys Bertramka)) position) input-park))
-    (= true ((nth (rest (keys Bertramka)) position) park-stored))))
+   (and
+    (= true @((nth (rest (keys Bertramka)) position) input-park))
+    (= true @((nth (rest (keys Bertramka)) position) park-stored))))
 
 (defn data-comparer-helper-2 [park-stored input-park]  ;;rewrite docstring
   "It takes in a list of parks, user inputted data and a parameter,
