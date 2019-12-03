@@ -8,7 +8,7 @@
         [inflections.core])
   (:import [ica.parkData Park]))
 
-(def quit-words
+(def quitwords
   "It slurps a list of words from 'recog_phrases.json' that are used to quit chatbot's main loop."
   (get (first (cheshire/parsed-seq (io/reader "src/ica/recog_phrases.json") true)) :quitwords))
 
@@ -18,12 +18,12 @@
   (println question)
   (tokenize (read-line)))
 
-(defn word-exists? [quit-words word] ;; not used anywhere, exists here in case it will be needed
+(defn word-exists? [quit-words sentence] ;; not used anywhere, exists here in case it will be needed
   "It takes a word from the user and a list of quit words
   and iterates through are used to quit from the chatbot."
   (loop [lst quit-words]
     (when (seq lst)
-      (if (= (first lst) word)
+      (if (some #(when (= (first lst) %) %) (tokenize sentence))
         true
         (recur (rest lst))))))
 
@@ -102,7 +102,7 @@
   "Tell me what you would like to see or like to do in Prague."
   "I can suggest a park in Prague for you."])
 
-(defn greet [lst-park]
+(defn greet []
   "It contains a procedural structure of a chatbot interface.
   It prints out greetings and (TODO: more contents)."
   (loop [grts greetings]
@@ -113,12 +113,17 @@
       (println (first grts))
       (recur (rest grts)))))
 
-(defn interface []
-  (let* [user-input (read-line)]
-    (get-userpark user-input)
-    (let* [matches (data-comparer-main lst-park user-park)]
-      (print-names matches))))
+(defn interface [user-input]
+  (get-userpark user-input)
+  (let* [matches (data-comparer-main lst-park user-park)]
+    (print-names matches)))
 
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
-  (println "Bye!"))
+  (greet)
+  (loop [user-input (read-line)]
+   (when-not (word-exists? quitwords user-input)
+    (interface user-input)
+    (println "...How can I help you more?")
+    (recur (read-line))))
+  (println "...Bye!"))
