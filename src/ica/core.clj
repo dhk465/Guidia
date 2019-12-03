@@ -114,15 +114,10 @@
       (recur (rest grts)))))
 
 (defn interface []
-   (with-local-vars [user-input nil
-                     matches nil
-                     ]
-    (var-set user-input (read-line))                     
+  (let* [user-input (read-line)]
     (get-userpark user-input)
-    (var-set matches (data-comparer-main lst-park user-park))
-    (print-names matches)
-
-     ))
+    (let* [matches (data-comparer-main lst-park user-park)]
+      (print-names matches))))
 
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
