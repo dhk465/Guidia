@@ -1,11 +1,10 @@
 {
   "quitwords": ["quit", "exit", "shutdown", "tired", "flat-tired", "shut up", "stfu", "eject", "init 0", "kys", "kill chatbot", "gameover", "disconnect", "out", "i want to talk to a human", "ciao", "leave me alone", "stupid", "na shledanou"],
-  "dogs": ["pet", "dog", "cat", "goat", "horse"],
-  "bicycle": ["bike", "bicycle", "wheel", "cycle", "kolo"],
-  "skating": ["skate", "roller", "rollerblade", "skateboard", "ramp", "skating ramp"],
-  "refreshment": ["restaurant", "drink", "eat", "shop", "refresh", "bar", "beer", "pivo", "kozel", "wine", "cola", "kofola", "food", "hungry", "feed me", "kebab", "juice", "dessert", "gin", "tonic", "water", "vodka", "coffee", "kava", "late", "cappuccino", "branik", "ipa", "jamson", "ice cream", "sweets", "chips"],
-  "sportsfield": ["sport", "ball", "exercise", "workout", "run", "jog", "field", "walk", "hike", "hiking", "climbe", "football", "basketball", "tennis", "hiking trail"],
-  "playground": ["kid", "child", "children", "play", "playground", "kids", "sand", "swing", "hut", "slide", "nets", "climbers", "trails"],
-  "parking": ["parking", "car", "free parking", "paid parking", "can i park", "parking allowed"],
-  "architecture": ["monument", "architecture", "museum", "church", "castle", "palace", "gallpery", "cemetery", "observatory", "rotunda", "summer residence", "planetarium", "romanesque", "gothic", "renaissance", "baroque", "rococo", "cubism", "modern art"]
+  "dogs": ["pet", "dog", "cat", "goat", "horse", "sheep", "cow", "bull", "unicorn"],
+  "bicycle": ["bike", "bicycle", "wheel", "cycle", "kolo", "unicycle"],
+  "skating": ["skate", "roller", "rollerblade", "skateboard", "ramp"],
+  "refreshment": ["refreshment", "restaurant", "drink", "eat", "shop", "refreshing", "bar", "beer", "pivo", "kozel", "wine", "cola", "kofola", "food", "hungry", "feed", "kebab", "juice", "dessert", "gin", "tonic", "water", "vodka", "coffee", "kava", "latte", "cappuccino", "branik", "ipa", "jameson", "icecream", "sweet", "chip"],
+  "sportsfield": ["sportsfield", "sport", "ball", "exercise", "workout", "run", "jog", "field", "walk", "hike", "hiking", "climb", "football", "basketball", "tennis", "trail"],
+  "playground": ["kid", "child", "play", "playground", "sand", "swing", "hut", "slide", "net", "climber"],
+  "parking": ["parking", "car"],
 }
