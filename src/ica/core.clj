@@ -72,6 +72,28 @@
           highest (data-comparer-find-max sim-vector)]
      (data-comparer-helper-4 lst-park sim-vector highest)))
 
+(defn print-names [comparer-result]
+  (if (= 0 (count comparer-result))
+   (println "Nothing has matched.")
+    (if (= 1 (count comparer-result))
+     (do
+      (print "I would recommend ")
+      (print (:name (first comparer-result)))
+      (println "."))
+      (do
+       (print "I would recommend ")
+        (loop [comparer-res comparer-result]
+         (when-not (empty?  comparer-res)
+          (if (empty? (rest comparer-res))
+           (do
+            (print "and ")
+            (print (:name (first comparer-res)))
+            (println "."))
+           (do
+            (print (:name (first comparer-res)))
+            (print ", ")))
+          (recur (rest comparer-res)))))))) 
+
 (def bot-name "Guidia")
 
 (def greetings
