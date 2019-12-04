@@ -3,17 +3,20 @@
 The first ICA Project in the Symbolic Computation class of Computing B.Sc.
 (grad. expected in 2021)
 
-## Objectives
+
+## Objective
 
 Creating a chatbot that answers a sentence(s) that correspond(s) to a specified
 structure of the English language
 
-The chatbot's main theme is to inform users of Prague's thirteen major parks
-and their details.
+The chatbot's main theme is to recommend Prague's thirteen major parks to the
+user in regard to the user's preferences.
+
 
 ## Requirement
 
 * [Leiningen](https://leiningen.org/) version 2.0 or higher
+
 
 ## Installation
 
@@ -23,42 +26,64 @@ download this chatbot.
 git clone https://github.com/dhk465/symbolic_comp_one.git
 cd symbolic_comp_one
 ```
-Have fun around Prague's parks!
+
 
 ## Usage
 
-Open a terminal or cmd in the repository where project.clj is located.
-
+Open a terminal or command-line in the repository where project.clj is located.
 Then type the line below:
-```bash
+```
 lein run
 ```
+Leiningen will download and install all necessary libraries for a short moment.
+
+```
+Chatbot=> If you want something more specific, tell me more what you wish.
+User=> quit
+Chatbot=> Bye!
+```
+The chatbot can be exited by certain keywords in [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json).
+
 
 ## Examples
 
-TODO
-
-```bash
-User=> (TBA)
-Chatbot=> (TBA)
+The chatbot gives the user a list of parks in Prague which match the wishes
+that the user type.
+The match-able keywords may include pets, cycling, skating, bars/restaurants,
+sports, playgrounds for children, and parking.
+More keywords can be added to [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json).
+```
+Chatbot=> Tell me what you would like to see or like to do in Prague.
+Chatbot=> I can suggest a park in Prague for you.
+User=> I would like to ride a bike and eat something in a park.
+Chatbot=> I would recommend Bertramka, Františkánská zahrada, Obora Hvězda, Kampa, Petřín, Riegrovy sady, Stromovka, and Vyšehrad.
+Chatbot=> If you want something more specific, tell me more what you wish.
 ```
 
 
 ## Limitations
 
-Negative sentences from the user-input do not register as false in the record, meaning that users cannot make a negative wish.
-phrases containing "or" are both considered as "and"
-no verb conjugations that the chatbot does not recognize verb forms that are not present in the json (eat != eating)
+Negative sentences from the user-input do not register as false in the record,
+meaning that users cannot make a negative wish
+e.g. "I do not want dogs in the park".
+
+Linguistic conjunctions containing "or" is considered as "and".
+The chatbot does not have any complex understandings of conjunctions
+but only track the phrases in [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json).
+
+Since the chatbot operates on lists of keywords, it also does not understand
+differences of tenses or conjugations. It is recommended for the user to use
+the present simple tense.
 
 
 ## Dependencies
 
-This chatbot is dependent on a multiple of libraries that provided with
-code snippets or functions pre-defined by the coders/programmers listed below.
+This chatbot depends on a multiple of libraries that provided code snippets
+or functions pre-defined by the authors listed below.
 
-* Hinman, M. L.. (2018) '[Natural Language Processing in Clojure (opennlp)](https://github.com/dakrone/clojure-opennlp)', _GitHub_, 0.5.0.
-* Hinman, M. L.. (2019) '[Cheshire Clojure JSON encoding/decoding](https://github.com/dakrone/cheshire)', _GitHub_, 5.9.0.
-* Stewart, A.. (2014) '[plural.core/pluralize](https://github.com/stewart/plural.clj)', _GitHub_, 0.1.0.
+* Hinman, M. L.. (2018) '[Natural Language Processing in Clojure (opennlp)](https://github.com/dakrone/clojure-opennlp)', 0.5.0, _GitHub_.
+* Hinman, M. L.. (2019) '[Cheshire Clojure JSON encoding/decoding](https://github.com/dakrone/cheshire)', 5.9.0, _GitHub_.
+* r0man. (2014) '[Inflections](https://github.com/r0man/inflections-clj)', 0.13.2, _GitHub_.
 
 
 ## References
