@@ -93,7 +93,7 @@ Praha.eu (2019) PRAŽSKÉ PARKY. Available at: http://www.praha.eu/jnp/cz/co_del
 
 ## License
 
-Copyright © 2019 Daehee Kim, Ilyas Sakhanov, Sulieman Al Rustom
+Copyright © 2019 Daehee Kim (dhk465 and MockTurtle7), Ilyas Sakhanov (ilyassakhanov and Ivan Ivanov), Sulieman Al Rustom (Slemanof)
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
