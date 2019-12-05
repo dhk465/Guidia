@@ -109,7 +109,7 @@
   It prints out greetings and (TODO: more contents)."
   (loop [grts greetings]
     (when-not (empty? grts)
-      (doseq [timer (count greetings)]
+      (doseq [timer (range (count greetings))]
         (Thread/sleep 500))
       (println (first grts))
       (recur (rest grts)))))
@@ -137,7 +137,7 @@
           (print "User=> "))
         (do
           (interface user-input)
-          (println (format "%s=> If you want something more specific, tell me more what you wish.\n %s=> If you want me to forget your preferences, type 'forget'." bot-name bot-name))
+          (println (format "%s=> If you want something more specific, tell me more what you wish.\n%s=> If you want me to forget your preferences, type 'forget'." bot-name bot-name))
           (print "User=> ")))
       (recur (do (flush) (read-line)))))
   (println (format "%s=> Bye!" bot-name)))
