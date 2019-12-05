@@ -26,7 +26,7 @@
   (println question)
   (tokenize (read-line)))
 
-(defn word-exists? [quit-words sentence] ;; not used anywhere, exists here in case it will be needed
+(defn word-exists? [quit-words sentence]
   "It takes a word from the user and a list of quit words
   and iterates through are used to quit from the chatbot."
   (loop [lst quit-words]
@@ -35,16 +35,15 @@
         true
         (recur (rest lst))))))
 
-(defn data-comparer-helper-1 [position park-stored input-park] ;;rewrite docstring
-  "It takes a data about park and compares to data inputed by a user for one parameter."
+(defn data-comparer-helper-1 [position park-stored input-park] 
+  "It takes in two park records, a position in a record as a number, 
+  returns a boolean value if at the both values on the given position have the value of 'true'."
    (and
     (= true @((nth (rest (keys Bertramka)) position) input-park))
     (= true @((nth (rest (keys Bertramka)) position) park-stored))))
 
-(defn data-comparer-helper-2 [park-stored input-park]  ;;rewrite docstring
-  "It takes in a list of parks, user inputted data and a parameter,
-  adds the park to a locally stored vector if the chosen parameter in the park
-  and user inputted data matches. Returns that vector of parks."
+(defn data-comparer-helper-2 [park-stored input-park]  
+  "It takes in two park records and returns a similarity count."
   (with-local-vars [counter 0]
     (doseq [position (range 7)]
       (if (data-comparer-helper-1 position park-stored input-park)
@@ -52,6 +51,7 @@
     (var-get counter)))
 
 (defn data-comparer-helper-3 [lst-park input-park]
+ "It takes in a vector that contains records of all parks and the record that is created from user input."
   (with-local-vars [sim-vector []]
    (loop [lst-park-loc lst-park]
     (when-not (empty? lst-park-loc)
@@ -60,6 +60,8 @@
    (var-get sim-vector)))
 
 (defn data-comparer-helper-4 [lst-park sim-vector highest]
+ "It takes in a vector of all parks, a vector that contains similarity count  and the maximum from the vector,
+ returns a vector that contain park record, that have the maximum similarity count in similarity count vector."
   (with-local-vars [park-matches []]
     (loop [position 0]
       (when (< position (count lst-park))
@@ -69,18 +71,22 @@
     (var-get park-matches)))
 
 (defn data-comparer-find-max [sim-vector]
+ "It takes in a vector of numbers and returns the maximum."
   (with-local-vars [highest 0]
     (doseq [sim-counter sim-vector]
       (if (< @highest sim-counter)
         (var-set highest sim-counter)))
     (var-get highest)))
 
-(defn data-comparer-main [lst-park input-park] ;; bug in the code
+(defn data-comparer-main [lst-park input-park] 
+ "It takes in a vector of park records and a record, that was created from a user input and 
+  returns a vector of the best matched parks"
    (let* [sim-vector (data-comparer-helper-3 lst-park input-park)
           highest (data-comparer-find-max sim-vector)]
      (data-comparer-helper-4 lst-park sim-vector highest)))
 
 (defn print-names [comparer-result]
+ "It takes in a vector of parks and prints it in a sentence"
   (if (= 0 (count comparer-result))
    (println (format "%s=> Sorry. Nothing seems to match your preferences." bot-name))
     (if (= 1 (count comparer-result))
