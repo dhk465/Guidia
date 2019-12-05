@@ -20,28 +20,23 @@
   "It slurps a list of words from 'recog_phrases.json' that are used to quit chatbot's main loop."
   (get (first (cheshire/parsed-seq (io/reader "src/ica/recog_phrases.json") true)) :quitwords))
 
-(defn ask [question] ;; not used anywhere, exists here in case it will be needed
-  "It takes a string of question to show the user so that it further takes a user input.
-  It returns the user input as a lazy-seq of tokenized words/strings."
-  (println question)
-  (tokenize (read-line)))
-
-(defn word-exists? [quit-words sentence] ;; not used anywhere, exists here in case it will be needed
-  "It takes a word from the user and a list of quit words
-  and iterates through are used to quit from the chatbot."
+(defn word-exists? [quit-words sentence]
+  "It takes a word or a sentence from the user and a list of quit words
+  and iterates through them to find if they match in order to quit from the chatbot."
   (loop [lst quit-words]
     (when-not (empty? lst)
       (if (some #(when (= (first lst) %) %) (map clojure.string/lower-case (tokenize sentence)))
         true
         (recur (rest lst))))))
 
-(defn data-comparer-helper-1 [position park-stored input-park] ;;rewrite docstring
-  "It takes a data about park and compares to data inputed by a user for one parameter."
-   (and
+(defn data-comparer-helper-1 [position park-stored input-park]
+  "It takes in two park records, a position in a record as a number,
+  returns a boolean value if at the both values on the given position have the value of 'true'."
+  (and
     (= true @((nth (rest (keys Bertramka)) position) input-park))
     (= true @((nth (rest (keys Bertramka)) position) park-stored))))
 
-(defn data-comparer-helper-2 [park-stored input-park]  ;;rewrite docstring
+(defn data-comparer-helper-2 [park-stored input-park]
   "It takes in a list of parks, user inputted data and a parameter,
   adds the park to a locally stored vector if the chosen parameter in the park
   and user inputted data matches. Returns that vector of parks."
@@ -52,14 +47,17 @@
     (var-get counter)))
 
 (defn data-comparer-helper-3 [lst-park input-park]
+  "It takes in a vector that contains records of all parks and the record that is created from user input."
   (with-local-vars [sim-vector []]
-   (loop [lst-park-loc lst-park]
-    (when-not (empty? lst-park-loc)
-     (var-set sim-vector (conj @sim-vector (data-comparer-helper-2 (first lst-park-loc) input-park)))
-     (recur (rest lst-park-loc))))
-   (var-get sim-vector)))
+    (loop [lst-park-loc lst-park]
+      (when-not (empty? lst-park-loc)
+        (var-set sim-vector (conj @sim-vector (data-comparer-helper-2 (first lst-park-loc) input-park)))
+        (recur (rest lst-park-loc))))
+    (var-get sim-vector)))
 
 (defn data-comparer-helper-4 [lst-park sim-vector highest]
+  "It takes in a vector of all parks, a vector that contains similarity count  and the maximum from the vector,
+  returns a vector that contain park record, that have the maximum similarity count in similarity count vector."
   (with-local-vars [park-matches []]
     (loop [position 0]
       (when (< position (count lst-park))
@@ -69,67 +67,77 @@
     (var-get park-matches)))
 
 (defn data-comparer-find-max [sim-vector]
+  "It takes in a vector of numbers and returns the maximum."
   (with-local-vars [highest 0]
     (doseq [sim-counter sim-vector]
       (if (< @highest sim-counter)
         (var-set highest sim-counter)))
     (var-get highest)))
 
-(defn data-comparer-main [lst-park input-park] ;; bug in the code
+(defn data-comparer-main [lst-park input-park]
+  "It takes in a vector of park records and a record, that was created from a user input and
+  returns a vector of the best matched parks."
    (let* [sim-vector (data-comparer-helper-3 lst-park input-park)
           highest (data-comparer-find-max sim-vector)]
-     (data-comparer-helper-4 lst-park sim-vector highest)))
+      (data-comparer-helper-4 lst-park sim-vector highest)))
 
 (defn print-names [comparer-result]
+  "It takes in a vector of parks and prints it in a sentence."
   (if (= 0 (count comparer-result))
-   (println (format "%s=> Sorry. Nothing seems to match your preferences." bot-name))
+    (println (format "%s=> Sorry. Nothing seems to match your preferences." bot-name))
     (if (= 1 (count comparer-result))
-     (do
-      (print (format "%s=> I would recommend " bot-name))
-      (print (:name (first comparer-result)))
-      (println "."))
       (do
-       (print (format "%s=> I would recommend " bot-name))
+        (print (format "%s=> I would recommend " bot-name))
+        (print (:name (first comparer-result)))
+        (println "."))
+      (do
+        (print (format "%s=> I would recommend " bot-name))
         (loop [comparer-res comparer-result]
-         (when-not (empty?  comparer-res)
-          (if (empty? (rest comparer-res))
-           (do
-            (print "and ")
-            (print (:name (first comparer-res)))
-            (println "."))
-           (do
-            (print (:name (first comparer-res)))
-            (print ", ")))
-          (recur (rest comparer-res))))))))
+          (when-not (empty? comparer-res)
+            (if (empty? (rest comparer-res))
+              (do
+              (print "and ")
+              (print (:name (first comparer-res)))
+              (println "."))
+              (do
+                (print (:name (first comparer-res)))
+                (print ", ")))
+            (recur (rest comparer-res))))))))
 
 (defn greet []
   "It contains a procedural structure of a chatbot interface.
   It prints out greetings and (TODO: more contents)."
   (loop [grts greetings]
     (when-not (empty? grts)
-      (doseq [timer "..."]
+      (doseq [timer (count greetings)]
         (Thread/sleep 500))
       (println (first grts))
       (recur (rest grts)))))
 
 (defn interface [user-input]
+  "It cascades other functions, get-userpark and data-comparer-main, and returns
+  results of the park search in a single command. In doing so, it takes a string
+  of the user input."
   (get-userpark user-input)
   (let* [matches (data-comparer-main lst-park user-park)]
     (print-names matches)))
 
 (defn -main [& args]
-  "It allows user to run the chatbot on command 'lein run'."
+  "It allows user to run the chatbot on command 'lein run'. It also loops the
+  chatbot interface until a quitword is given. While it loops, it collects
+  keywords from the user to find the user's preferences in parks. If the user
+  says 'forget' instead, it resets the userpark to empty its data."
   (greet)
   (loop [user-input (do (print "User=> ") (flush) (read-line))]
-   (when-not (word-exists? quitwords user-input)
-    (if (= user-input "forget")
-     (do
-       (reset-userpark)
-       (println (format "%s=> Your preferences have been cleared. Tell me about your new park." bot-name))
-       (print "User=> "))
-     (do
-       (interface user-input)
-       (println (format "%s=> If you want something more specific, tell me more what you wish.\n %s=> If you want me to forget your preferences, type 'forget'." bot-name bot-name))
-       (print "User=> ")))
-    (recur (do (flush) (read-line)))))
+    (when-not (word-exists? quitwords user-input)
+      (if (= (clojure.string/lower-case user-input) "forget")
+        (do
+          (reset-userpark)
+          (println (format "%s=> Your preferences have been cleared. Tell me about your new park." bot-name))
+          (print "User=> "))
+        (do
+          (interface user-input)
+          (println (format "%s=> If you want something more specific, tell me more what you wish.\n %s=> If you want me to forget your preferences, type 'forget'." bot-name bot-name))
+          (print "User=> ")))
+      (recur (do (flush) (read-line)))))
   (println (format "%s=> Bye!" bot-name)))
