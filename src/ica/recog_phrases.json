@@ -5,7 +5,7 @@
   "bicycle": ["bike", "bicycle", "wheel", "cycle", "kolo", "unicycle"],
   "skating": ["skate", "roller", "rollerblade", "skateboard", "ramp"],
   "refreshment": ["refreshment", "restaurant", "drink", "eat", "shop", "refreshing", "bar", "beer", "pivo", "kozel", "wine", "cola", "kofola", "food", "hungry", "feed", "kebab", "juice", "dessert", "gin", "tonic", "water", "vodka", "coffee", "kava", "latte", "cappuccino", "branik", "ipa", "jameson", "icecream", "sweet", "chip"],
-  "sportsfield": ["sportsfield", "sport", "ball", "exercise", "workout", "run", "jog", "field", "walk", "hike", "hiking", "climb", "football", "basketball", "tennis", "trail"],
+  "sportsfield": ["sportsfield", "sport", "ball", "exercise", "workout", "run", "jog", "field", "walk", "hike", "hiking", "climb", "football", "basketball", "tennis", "trail", "swim", "swimming", "soccer", "golf", "dart"],
   "playground": ["kid", "child", "play", "playground", "sand", "swing", "hut", "slide", "net", "climber"],
   "parking": ["parking", "car"]
 }
