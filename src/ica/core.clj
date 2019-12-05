@@ -8,6 +8,14 @@
         [inflections.core])
   (:import [ica.parkData Park]))
 
+(def bot-name "Guidia")
+
+(def greetings
+  "It contains a vector of greetings that are printed in the beginning of the chat."
+  [(format "%s=> Hello, my name is %s, your guide to Prague parks." bot-name bot-name)
+  (format "%s=> Tell me what you would like to see or like to do in Prague." bot-name)
+  (format "%s=> I can suggest a park in Prague for you." bot-name)])
+
 (def quitwords
   "It slurps a list of words from 'recog_phrases.json' that are used to quit chatbot's main loop."
   (get (first (cheshire/parsed-seq (io/reader "src/ica/recog_phrases.json") true)) :quitwords))
@@ -22,8 +30,8 @@
   "It takes a word from the user and a list of quit words
   and iterates through are used to quit from the chatbot."
   (loop [lst quit-words]
-    (when (seq lst)
-      (if (some #(when (= (first lst) %) %) (tokenize sentence))
+    (when-not (empty? lst)
+      (if (some #(when (= (first lst) %) %) (map clojure.string/lower-case (tokenize sentence)))
         true
         (recur (rest lst))))))
 
@@ -74,14 +82,14 @@
 
 (defn print-names [comparer-result]
   (if (= 0 (count comparer-result))
-   (println "Nothing has matched.")
+   (println (format "%s=> Sorry. Nothing seems to match your preferences." bot-name))
     (if (= 1 (count comparer-result))
      (do
-      (print "I would recommend ")
+      (print (format "%s=> I would recommend " bot-name))
       (print (:name (first comparer-result)))
       (println "."))
       (do
-       (print "I would recommend ")
+       (print (format "%s=> I would recommend " bot-name))
         (loop [comparer-res comparer-result]
          (when-not (empty?  comparer-res)
           (if (empty? (rest comparer-res))
@@ -94,22 +102,13 @@
             (print ", ")))
           (recur (rest comparer-res))))))))
 
-(def bot-name "Guidia")
-
-(def greetings
-  "It contains a vector of greetings that are printed in the beginning of the chat."
-  [(format "Hello, my name is %s, your guide to Prague parks." bot-name)
-  "Tell me what you would like to see or like to do in Prague."
-  "I can suggest a park in Prague for you."])
-
 (defn greet []
   "It contains a procedural structure of a chatbot interface.
   It prints out greetings and (TODO: more contents)."
   (loop [grts greetings]
     (when-not (empty? grts)
       (doseq [timer "..."]
-        (print timer)
-        (Thread/sleep 1000))
+        (Thread/sleep 500))
       (println (first grts))
       (recur (rest grts)))))
 
@@ -121,9 +120,16 @@
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
   (greet)
-  (loop [user-input (read-line)]
+  (loop [user-input (do (print "User=> ") (flush) (read-line))]
    (when-not (word-exists? quitwords user-input)
-    (interface user-input)
-    (println "...If you want something more specific, tell me more what you wish.")
-    (recur (read-line))))
-  (println "...Bye!"))
+    (if (= user-input "forget")
+     (do
+       (reset-userpark)
+       (println (format "%s=> Your preferences have been cleared. Tell me about your new park." bot-name))
+       (print "User=> "))
+     (do
+       (interface user-input)
+       (println (format "%s=> If you want something more specific, tell me more what you wish." bot-name))
+       (print "User=> ")))
+    (recur (do (flush) (read-line)))))
+  (println (format "%s=> Bye!" bot-name)))
