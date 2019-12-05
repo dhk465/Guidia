@@ -12,7 +12,7 @@
  [])
 
 (def user-park (Park. "user" (ref nil) (ref nil) (ref nil) (ref nil) (ref nil) (ref nil) (ref nil)))
-
+;;                      name       dogs      cykl         skating   refr       sportfld   
 (def Bertramka (Park. "Bertramka" (ref nil) (ref true) (ref false) (ref true) (ref false) (ref nil)  (ref true)))
 (def lst-park (conj lst-park Bertramka ))
 (def Frantiskanska-zahrada (Park. "Františkánská zahrada" (ref false) (ref true) (ref false) (ref true) (ref false) (ref true) (ref false)))
@@ -23,10 +23,10 @@
 (def lst-park (conj lst-park Kampa))
 (def Kinskeho-zahrada (Park. "Kínského zahrada" (ref nil) (ref false) (ref false) (ref true) (ref false) (ref true) (ref false)))
 (def lst-park (conj lst-park Kinskeho-zahrada))
-(def Klamovka (Park. "Klamovka" (ref true) (ref false) (ref false) (ref true) (ref false) (ref true) (ref true)))
+(def Klamovka (Park. "Klamovka" (ref true) (ref false) (ref false) (ref true) (ref true) (ref true) (ref true)))
 (def lst-park (conj lst-park Klamovka))
-(def Landronka (Park. "Landronka" (ref true) (ref false) (ref true)  (ref true) (ref false) (ref true) (ref true)))
-(def lst-park (conj lst-park Landronka))
+(def Ladronka (Park. "Ladronka" (ref true) (ref false) (ref true)  (ref true) (ref false) (ref true) (ref true)))
+(def lst-park (conj lst-park Ladronka))
 (def Letna (Park. "Letná" (ref nil) (ref false) (ref true) (ref true) (ref false) (ref true) (ref true)))
 (def lst-park (conj lst-park Letna))
 (def Petrin (Park. "Petřín" (ref nil)  (ref true)  (ref true) (ref true) (ref false) (ref true)  (ref true)))
