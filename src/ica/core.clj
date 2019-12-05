@@ -124,6 +124,6 @@
   (loop [user-input (read-line)]
    (when-not (word-exists? quitwords user-input)
     (interface user-input)
-    (println "...If you want something more specific, tell me more what you wish.")
+    (println "...If you want something more specific, tell me more what you wish. If you want me to forget your preferences, type 'forget'.")
     (recur (read-line))))
   (println "...Bye!"))
