@@ -67,6 +67,11 @@ Negative sentences from the user-input do not register as false in the record,
 meaning that users cannot make a negative wish
 e.g. "I do not want dogs in the park".
 
+The chatbot also generalizes information on all categories. For example,
+the chatbot always returns parks with any kind of sports facilities in response
+to a user-input like "swim" or "tennis". So the information given back to the
+user may not be very accurate.
+
 Linguistic conjunctions containing "or" is considered as "and".
 The chatbot does not have any complex understandings of conjunctions
 but only track the phrases in [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json).
@@ -93,7 +98,7 @@ Praha.eu (2019) PRAŽSKÉ PARKY. Available at: http://www.praha.eu/jnp/cz/co_del
 
 ## License
 
-Copyright © 2019 Daehee Kim, Ilyas Sakhanov, Sulieman Al Rustom
+Copyright © 2019 Daehee Kim (dhk465 and MockTurtle7), Ilyas Sakhanov (ilyassakhanov and Ivan Ivanov), Sulieman Al Rustom (Slemanof)
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
