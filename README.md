@@ -1,16 +1,14 @@
-# symbolic_comp_one
+# symbolic_comp_two
 
-The first ICA Project in the Symbolic Computation class of Computing B.Sc.
+The second ICA Project in the Symbolic Computation class of Computing B.Sc.
 (grad. expected in 2021)
 
 
 ## Objective
 
-Creating a chatbot that answers a sentence(s) that correspond(s) to a specified
-structure of the English language
+A deep learning agent is added to the chatbot made in [the first ICA project](https://github.com/dhk465/symbolic_comp_one).
 
-The chatbot's main theme is to recommend Prague's thirteen major parks to the
-user in regard to the user's preferences.
+In addition to the Prague guide chatbot, the application recognizes a picture given by the user, and determines if the object in the picture is (((TBA))).
 
 
 ## Requirement
@@ -23,8 +21,8 @@ user in regard to the user's preferences.
 This application is hosted on GitHub. You can use the commands below to
 download this chatbot.
 ```
-git clone https://github.com/dhk465/symbolic_comp_one.git
-cd symbolic_comp_one
+git clone https://github.com/dhk465/symbolic_comp_two.git
+cd symbolic_comp_two
 ```
 
 
@@ -86,9 +84,10 @@ the present simple tense.
 This chatbot depends on a multiple of libraries that provided code snippets
 or functions pre-defined by the authors listed below.
 
-* Hinman, M. L.. (2018) '[Natural Language Processing in Clojure (opennlp)](https://github.com/dakrone/clojure-opennlp)', 0.5.0, _GitHub_.
-* Hinman, M. L.. (2019) '[Cheshire Clojure JSON encoding/decoding](https://github.com/dakrone/cheshire)', 5.9.0, _GitHub_.
-* r0man. (2014) '[Inflections](https://github.com/r0man/inflections-clj)', 0.13.2, _GitHub_.
+* Hinman, M. L. (2018) '[Natural Language Processing in Clojure (opennlp)](https://github.com/dakrone/clojure-opennlp)', 0.5.0, _GitHub_.
+* Hinman, M. L. (2019) '[Cheshire Clojure JSON encoding/decoding](https://github.com/dakrone/cheshire)', 5.9.0, _GitHub_.
+* r0man (2014) '[Inflections](https://github.com/r0man/inflections-clj)', 0.13.2, _GitHub_.
+* ThinkTopic, Anderson, M. (2018) '[Cortex](https://github.com/originrose/cortex)', 0.9.22, _GitHub_.
 
 
 ## References
