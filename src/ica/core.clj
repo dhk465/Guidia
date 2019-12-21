@@ -41,7 +41,7 @@
   adds the park to a locally stored vector if the chosen parameter in the park
   and user inputted data matches. Returns that vector of parks."
   (with-local-vars [counter 0]
-    (doseq [position (range 7)]
+    (doseq [position (range (- (count Bertramka) 1))]
       (if (data-comparer-helper-1 position park-stored input-park)
         (var-set counter (+ 1 @counter))))
     (var-get counter)))
