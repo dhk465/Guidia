@@ -33,15 +33,15 @@
   "It takes in two park records, a position in a record as a number,
   returns a boolean value if at the both values on the given position have the value of 'true'."
   (and
-    (= true @((nth (rest (keys Bertramka)) position) input-park))
-    (= true @((nth (rest (keys Bertramka)) position) park-stored))))
+    (= true @((nth (rest (keys (first lst-park))) position) input-park))
+    (= true @((nth (rest (keys (first lst-park))) position) park-stored))))
 
 (defn data-comparer-helper-2 [park-stored input-park]
   "It takes in a list of parks, user inputted data and a parameter,
   adds the park to a locally stored vector if the chosen parameter in the park
   and user inputted data matches. Returns that vector of parks."
   (with-local-vars [counter 0]
-    (doseq [position (range (- (count Bertramka) 1))]
+    (doseq [position (range (- (count (first lst-park)) 1))]
       (if (data-comparer-helper-1 position park-stored input-park)
         (var-set counter (+ 1 @counter))))
     (var-get counter)))
