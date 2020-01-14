@@ -3,7 +3,7 @@ name: Bug report
 about: Create a report to help us improve
 title: "[BUG]-Describe-the-bug"
 labels: bug
-assignees: dhk465
+assignees: dhk465, Slemanof, ilyassakhanov
 
 ---
 
