@@ -1,5 +1,12 @@
-# Description
+---
+name: Pull request
+about: Ask for a merge of changes into a branch
+title: "[PULL-REQUEST]-DESCRIBE-THE-CHANGES"
+labels: ''
+assignees: dhk465, Slemanof, ilyassakhanov
 
--- summarize the changes and note which issue is fixed --
+---
 
-The commits in this request solve #(replace this brackets with the issue number).
+**What will your pull request change in the branch being merged into? Please describe.**
+A clear and concise description of what the changes are. Ex. The merge will change [...] and solve [...]
+
