@@ -21,8 +21,8 @@ In addition to the Prague guide chatbot, the application recognizes a picture gi
 This application is hosted on GitHub. You can use the commands below to
 download this chatbot.
 ```
-git clone https://github.com/dhk465/symbolic_comp_two.git
-cd symbolic_comp_two
+git clone https://github.com/dhk465/symbolic_comp_one.git
+cd symbolic_comp_one
 ```
 
 
