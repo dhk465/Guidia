@@ -1,5 +1,6 @@
 (ns ica.opennlp
-  "a namespace that contains definitions premade for natural language processing"
+  "a namespace that contains definitions premade
+  from natural language processing"
   (:gen-class))
 
 (use 'opennlp.nlp)

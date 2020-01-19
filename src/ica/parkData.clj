@@ -6,52 +6,93 @@
   (:use [inflections.core]
         [ica.opennlp :only (tokenize)]))
 
-(defrecord Park [name dogs bicycle skating refreshment sportsfield playground 
-parking])
+(defrecord Park
+  [name dogs bicycle skating refreshment sportsfield playground parking])
+
 (def lst-park
   "It creates a vector where the data about the parks will be appended."
-  [])
+  (vector))
 
-(def user-park (Park. "user" (ref nil) (ref nil) (ref nil) (ref nil) (ref nil) 
-(ref nil) (ref nil)))
-(def Bertramka (Park. "Bertramka" (ref nil) (ref true) (ref false) (ref true)
-(ref false) (ref nil) (ref true)))
-(def lst-park (conj lst-park Bertramka ))
-(def Frantiskanska-zahrada (Park. "Františkánská zahrada" (ref false)
-(ref true) (ref false) (ref true) (ref false) (ref true) (ref false)))
+(def user-park
+  (Park. "user"
+    (ref nil) (ref nil) (ref nil) (ref nil) (ref nil) (ref nil) (ref nil)))
+
+(def Bertramka
+  (Park. "Bertramka"
+    (ref nil) (ref true) (ref false) (ref true) (ref false) (ref nil) (ref true)))
+
+(def lst-park (conj lst-park Bertramka))
+
+(def Frantiskanska-zahrada
+  (Park. "Františkánská zahrada"
+    (ref false) (ref true) (ref false) (ref true) (ref false) (ref true) (ref false)))
+
 (def lst-park (conj lst-park Frantiskanska-zahrada))
-(def Obora-hvezda (Park. "Obora Hvězda" (ref true) (ref true) (ref false) 
-(ref true) (ref false) (ref true) (ref true)))
+
+(def Obora-hvezda
+  (Park. "Obora Hvězda"
+    (ref true) (ref true) (ref false) (ref true) (ref false) (ref true) (ref true)))
+
 (def lst-park (conj lst-park Obora-hvezda))
-(def Kampa (Park. "Kampa" (ref nil) (ref true) (ref true) (ref true) 
-(ref false) (ref true) (ref false)))
+
+(def Kampa
+  (Park. "Kampa"
+    (ref nil) (ref true) (ref true) (ref true) (ref false) (ref true) (ref false)))
+
 (def lst-park (conj lst-park Kampa))
-(def Kinskeho-zahrada (Park. "Kínského zahrada" (ref nil) (ref false) 
-(ref false) (ref true) (ref false) (ref true) (ref false)))
+
+(def Kinskeho-zahrada
+  (Park. "Kínského zahrada"
+    (ref nil) (ref false) (ref false) (ref true) (ref false) (ref true) (ref false)))
+
 (def lst-park (conj lst-park Kinskeho-zahrada))
-(def Klamovka (Park. "Klamovka" (ref true) (ref false) (ref false) (ref true) 
-(ref true) (ref true) (ref true)))
+
+(def Klamovka
+  (Park. "Klamovka"
+    (ref true) (ref false) (ref false) (ref true) (ref true) (ref true) (ref true)))
+
 (def lst-park (conj lst-park Klamovka))
-(def Ladronka (Park. "Ladronka" (ref true) (ref false) (ref true) (ref true) 
-(ref false) (ref true) (ref true)))
+
+(def Ladronka
+  (Park. "Ladronka"
+    (ref true) (ref false) (ref true) (ref true) (ref false) (ref true) (ref true)))
+
 (def lst-park (conj lst-park Ladronka))
-(def Letna (Park. "Letná" (ref nil) (ref false) (ref true) (ref true) 
-(ref false) (ref true) (ref true)))
+
+(def Letna
+  (Park. "Letná"
+    (ref nil) (ref false) (ref true) (ref true) (ref false) (ref true) (ref true)))
+
 (def lst-park (conj lst-park Letna))
-(def Petrin (Park. "Petřín" (ref nil) (ref true) (ref true) (ref true) 
-(ref false) (ref true) (ref true)))
+
+(def Petrin
+  (Park. "Petřín"
+    (ref nil) (ref true) (ref true) (ref true) (ref false) (ref true) (ref true)))
+
 (def lst-park (conj lst-park Petrin))
-(def Riegrovy-sady (Park. "Riegrovy sady" (ref true) (ref true) (ref true) 
-(ref true) (ref true) (ref true) (ref false)))
+
+(def Riegrovy-sady
+  (Park. "Riegrovy sady"
+    (ref true) (ref true) (ref true) (ref true) (ref true) (ref true) (ref false)))
+
 (def lst-park (conj lst-park Riegrovy-sady))
-(def Stromovka (Park. "Stromovka" (ref true) (ref true) (ref true) (ref true) 
-(ref false) (ref true) (ref true)))
+
+(def Stromovka
+  (Park. "Stromovka"
+    (ref true) (ref true) (ref true) (ref true) (ref false) (ref true) (ref true)))
+
 (def lst-park (conj lst-park Stromovka))
-(def Vysehrad (Park. "Vyšehrad" (ref nil) (ref true) (ref false) (ref true) 
-(ref false) (ref true) (ref true)))
+
+(def Vysehrad
+  (Park. "Vyšehrad"
+    (ref nil) (ref true) (ref false) (ref true) (ref false) (ref true) (ref true)))
+
 (def lst-park (conj lst-park Vysehrad))
-(def Vojanovy-sady (Park. "Vojanovy sady" (ref nil) (ref nil) (ref nil) 
-(ref nil) (ref nil) (ref nil) (ref nil)))
+
+(def Vojanovy-sady
+  (Park. "Vojanovy sady"
+    (ref nil) (ref nil) (ref nil) (ref nil) (ref nil) (ref nil) (ref nil)))
+
 (def lst-park (conj lst-park Vojanovy-sady))
 
 (def recogs
