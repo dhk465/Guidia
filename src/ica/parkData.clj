@@ -95,6 +95,15 @@
 
 (def lst-park (conj lst-park Vojanovy-sady))
 
+(def lst-tree 
+"It creates a vector where the data about the trees will be appended."
+ [])
+
+(defrecord Tree [leaves needles cones evergreen flowers])
+(def user-tree (Tree. (ref nil) (ref nil) (ref nil) (ref nil) (ref nil)))
+(def Spruce (Tree. (ref false) (ref true) (ref true) (ref true) (ref false)))
+(def Linden (Tree. (ref true) (ref false) (ref false) (ref false) (ref true)))
+
 (def recogs
   "It parses the strings from reg_phrases.json into a hashmap that is used to 
   recognize certain keywords from the chat."
