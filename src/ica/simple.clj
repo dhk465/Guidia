@@ -1,4 +1,4 @@
-(ns classify.simple
+(ns ica.simple
  (:require
   [clojure.java.io :as io]
   [cortex.util :as util]

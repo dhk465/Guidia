@@ -2,11 +2,11 @@
   "the main namespace to prepare the chatbot"
   (:gen-class)
   (:require [clojure.java.io :as io]
-            [cheshire.core :as cheshire :refer :all])
+            [cheshire.core :as cheshire :refer :all]
+            [ica.simple :as simple])
   (:use [ica.opennlp :only (tokenize)]
         [ica.parkData]
-        [inflections.core]
-        [ica.example.src.classify.simple])	
+        [inflections.core])	
   (:import [ica.parkData Park]))
 
 (def bot-name "Guidia")
