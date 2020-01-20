@@ -132,22 +132,22 @@
 (defn get-usermaps [sentence]
   "It locally defines a map of keywords to be either true or false from the
   input string of the user. It returns a list of maps."
-  (with-local-vars [klice '()]
+  (with-local-vars [kkeys '()]
     (loop [mapper (recognize sentence)]
       (if (empty? mapper)
         (merge (map #(assoc {} (first %) (not (recognize-neg sentence))) 
-        (var-get klice)))
+        (var-get kkeys)))
         (when (not (recognize-neg sentence))
-          (var-set klice (conj @klice (keys (first mapper))))
+          (var-set kkeys (conj @kkeys (keys (first mapper))))
           (recur (rest mapper)))))))
 
 (defn reset-userpark []
   "It loops through all keys but the name of the user-park and sets them to 
   nil."
-  (loop [klice (rest (keys (first lst-park)))]
-    (when-not (empty? klice)
-      (dosync (ref-set ((first klice) user-park) nil))
-      (recur (rest klice)))))
+  (loop [kkeys (rest (keys (first lst-park)))]
+    (when-not (empty? kkeys)
+      (dosync (ref-set ((first kkeys) user-park) nil))
+      (recur (rest kkeys)))))
 
 (defn get-userpark [sentence]
   "It utilizes get-usermaps and sets values of user-park in regard to the 
