@@ -1,12 +1,12 @@
-# symbolic_comp_two
+# Guidia chatbot 2.0
 
-The second ICA Project in the Symbolic Computation class of Computing B.Sc.
+The ICA Project in the Symbolic Computation class of Computing B.Sc.
 (grad. expected in 2021)
 
 
 ## Objective
 
-A deep learning agent is added to the chatbot made in [the first ICA project](https://github.com/dhk465/symbolic_comp_one).
+A deep learning agent is added to the chatbot made in [the ICA project](https://github.com/dhk465/symbolic_comp_one).
 
 In addition to the Prague guide chatbot, the application recognizes a picture given by the user, and determines if the object in the picture is (((TBA))).
 
@@ -36,9 +36,9 @@ lein run
 Leiningen will download and install all necessary libraries for a short moment.
 
 ```
-Chatbot=> If you want something more specific, tell me more what you wish.
+Guidia=> If you want something more specific, tell me more what you wish.
 User=> quit
-Chatbot=> Bye!
+Guidia=> Bye!
 ```
 The chatbot can be exited by certain keywords in [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json).
 
@@ -51,11 +51,11 @@ The match-able keywords may include pets, cycling, skating, bars/restaurants,
 sports, playgrounds for children, and parking.
 More keywords can be added to [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json).
 ```
-Chatbot=> Tell me what you would like to see or like to do in Prague.
-Chatbot=> I can suggest a park in Prague for you.
+Guidia=> Tell me what you would like to see or like to do in Prague.
+Guidia=> I can suggest a park in Prague for you.
 User=> I would like to ride a bike and eat something in a park.
-Chatbot=> I would recommend Bertramka, Františkánská zahrada, Obora Hvězda, Kampa, Petřín, Riegrovy sady, Stromovka, and Vyšehrad.
-Chatbot=> If you want something more specific, tell me more what you wish.
+Guidia=> I would recommend Bertramka, Františkánská zahrada, Obora Hvězda, Kampa, Petřín, Riegrovy sady, Stromovka, and Vyšehrad.
+Guidia=> If you want something more specific, tell me more what you wish.
 ```
 
 
