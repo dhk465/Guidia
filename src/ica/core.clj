@@ -5,9 +5,9 @@
             [cheshire.core :as cheshire :refer :all]
             [ica.simple :as simple])
   (:use [ica.opennlp :only (tokenize)]
-        [ica.parkData]
+        [ica.Data]
         [inflections.core])	
-  (:import [ica.parkData Park]))
+  (:import [ica.Data Park Tree]))
 
 (def bot-name "Guidia")
 

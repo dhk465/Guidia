@@ -1,4 +1,4 @@
-(ns ica.parkData
+(ns ica.Data
   "a namespace that contains information about Prague's parks"
   (:gen-class)
   (:require [clojure.java.io :as io]
