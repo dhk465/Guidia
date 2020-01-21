@@ -150,17 +150,17 @@
     (print-names matches)))
 
 
-(defn -main [& args]
-  "It allows user to run the chatbot on command 'lein run'. It also loops the
-  chatbot interface until a quitword is given. While it loops, it collects
-  keywords from the user to find the user's preferences in parks. If the user
-  says 'forget' instead, it resets the userpark to empty its data."
-  (greet)
-  (loop [user-input (do (print "User=> ") (flush) (read-line))]
+(defn guide-main []
+  "It loops the chatbot interface until a quitword is given.
+  While it loops, it collects keywords from the user
+  to find the user's preferences in parks.
+  If the user says 'forget' instead,
+  it resets the userpark to empty its data."
+  (loop [user-input (do (flush) (read-line))]
     (when-not (word-exists? quitwords user-input)
       (if (= (clojure.string/lower-case user-input) "forget")
         (do
-          (reset-userpark)
+          (reset-userrecord user-park)
           (println
             (format
               "%s=> Your preferences have been cleared."
@@ -179,5 +179,22 @@
               "%s=> If you want me to forget your preferences, type 'forget'."
               bot-name))
           (print "User=> ")))
-      (recur (do (flush) (read-line)))))
+      (recur (do (flush) (read-line))))))
+
+(defn tree-main []
+  ""
+  "TODO")
+
+(defn -main [& args]
+  "It allows user to run the chatbot on command 'lein run'."
+  (greet)
+  (print "User=> ")
+  (let* [user-input (clojure.string/lower-case (do (flush) (read-line)))]
+    (when-not (word-exists? quitwords user-input)
+      (if (= user-input "park")
+        (do (print "User=> ")
+            (guide-main))
+        (if (= user-input "tree")
+          (do (print "User=> ")
+              (tree-main))))))
   (println (format "%s=> Bye!" bot-name)))
