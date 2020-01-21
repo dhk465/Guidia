@@ -143,12 +143,18 @@
           (var-set kkeys (conj @kkeys (keys (first mapper))))
           (recur (rest mapper)))))))
 
-(defn reset-userpark []
+(defn decide-record [user-record]
+  (if (=  8 (count user-record))
+   user-park
+    (if (= 6 (count user-record))
+     user-tree)))
+
+(defn reset-userrecord [user-record]
   "It loops through all keys but the name of the user-park and sets them to 
   nil."
-  (loop [kkeys (rest (keys (first lst-park)))]
+  (loop [kkeys (rest (keys user-record))]
     (when-not (empty? kkeys)
-      (dosync (ref-set ((first kkeys) user-park) nil))
+      (dosync (ref-set ((first kkeys) (decide-record user-record)) nil))
       (recur (rest kkeys)))))
 
 (defn get-userpark [sentence]
