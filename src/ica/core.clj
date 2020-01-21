@@ -48,7 +48,7 @@
         true
         (recur (rest lst))))))
 
-(defn data-comparer-helper-1 [position park-stored input-park]
+(defn data-comparer-helper-bool-comparison [position park-stored input-park]
   "It takes in two park records, a position in a record as a number,
   returns a boolean value
   if the both values on the given position have the value of 'true'."
@@ -56,29 +56,29 @@
     (= true @((nth (rest (keys (first lst-park))) position) input-park))
     (= true @((nth (rest (keys (first lst-park))) position) park-stored))))
 
-(defn data-comparer-helper-2 [park-stored input-park]
+(defn data-comparer-helper-count-matches [park-stored input-park]
   "It takes in a list of parks, user inputted data and a parameter,
   adds the park to a locally stored vector if the chosen parameter in the park
   and user inputted data matches. Returns that vector of parks."
   (with-local-vars [counter 0]
     (doseq [position (range (- (count (first lst-park)) 1))]
-      (if (data-comparer-helper-1 position park-stored input-park)
+      (if (data-comparer-helper-bool-comparison position park-stored input-park)
         (var-set counter (+ 1 @counter))))
     (var-get counter)))
 
-(defn data-comparer-helper-3 [lst-park input-park]
+(defn data-comparer-helper-simularity-vector [lst-park input-park]
   "It takes in a vector that contains records of all parks
-  and the record that is created from user input."
+  and the record that is created from user input.Outputs a simularity vector."
   (with-local-vars [sim-vector (vector)]
     (loop [lst-park-loc lst-park]
       (when-not (empty? lst-park-loc)
         (var-set sim-vector
           (conj @sim-vector 
-                (data-comparer-helper-2 (first lst-park-loc) input-park)))
+                (data-comparer-helper-count-matches  (first lst-park-loc) input-park)))
         (recur (rest lst-park-loc))))
     (var-get sim-vector)))
 
-(defn data-comparer-helper-4 [lst-park sim-vector highest]
+(defn data-comparer-helper-get-max-simul-park [lst-park sim-vector highest]
   "It takes in a vector of all parks, a vector
   that contains similarity count  and the maximum from the vector,
   returns a vector that contain park records
@@ -103,9 +103,9 @@
   "It takes in a vector of park records and a record
   that was created from a user input and
   returns a vector of the best matched parks."
-   (let* [sim-vector (data-comparer-helper-3 lst-park input-park)
+   (let* [sim-vector (data-comparer-helper-simularity-vector lst-park input-park)
           highest (data-comparer-find-max sim-vector)]
-      (data-comparer-helper-4 lst-park sim-vector highest)))
+      (data-comparer-helper-get-max-simul-park lst-park sim-vector highest)))
 
 (defn print-names [comparer-result]
   "It takes in a vector of parks and prints it in a sentence."
@@ -148,6 +148,7 @@
   (get-userpark user-input)
   (let* [matches (data-comparer-main lst-park user-park)]
     (print-names matches)))
+
 
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'. It also loops the
