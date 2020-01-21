@@ -8,7 +8,7 @@ The ICA Project in the Symbolic Computation class of Computing B.Sc.
 
 A deep learning agent is added to the chatbot made in [the ICA project](https://github.com/dhk465/symbolic_comp_one).
 
-In addition to the Prague guide chatbot, the application recognizes a picture given by the user, and determines if the object in the picture is (((TBA))).
+In addition to the Prague guide chatbot "Guidia", the application recognizes a picture given by the user, and determines if the object in the picture is (((TBA))).
 
 
 ## Requirement
@@ -18,7 +18,7 @@ In addition to the Prague guide chatbot, the application recognizes a picture gi
 
 ## Installation
 
-This application is hosted on GitHub. You can use the commands below to
+Guidia chatbot is hosted on GitHub. You can use the commands below to
 download this chatbot.
 ```
 git clone https://github.com/dhk465/symbolic_comp_two.git
@@ -40,12 +40,12 @@ Guidia=> If you want something more specific, tell me more what you wish.
 User=> quit
 Guidia=> Bye!
 ```
-The chatbot can be exited by certain keywords in [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json).
+Guidia can be exited by certain keywords in [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json).
 
 
 ## Examples
 
-The chatbot gives the user a list of parks in Prague which match the wishes
+Guidia gives the user a list of parks in Prague which match the wishes
 that the user type.
 The match-able keywords may include pets, cycling, skating, bars/restaurants,
 sports, playgrounds for children, and parking.
@@ -65,16 +65,16 @@ Negative sentences from the user-input do not register as false in the record,
 meaning that users cannot make a negative wish
 e.g. "I do not want dogs in the park".
 
-The chatbot also generalizes information on all categories. For example,
-the chatbot always returns parks with any kind of sports facilities in response
+Guidia also generalizes information on all categories. For example,
+Guidia always returns parks with any kind of sports facilities in response
 to a user-input like "swim" or "tennis". So the information given back to the
 user may not be very accurate.
 
 Linguistic conjunctions containing "or" is considered as "and".
-The chatbot does not have any complex understandings of conjunctions
+Guidia does not have any complex understandings of conjunctions
 but only track the phrases in [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json).
 
-Since the chatbot operates on lists of keywords, it also does not understand
+Since Guidia operates on lists of keywords, it also does not understand
 differences of tenses or conjugations. It is recommended for the user to use
 the present simple tense.
 
