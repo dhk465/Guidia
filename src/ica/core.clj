@@ -181,9 +181,19 @@
           (print "User=> ")))
       (recur (do (flush) (read-line))))))
 
+(defn ask-for-pic []
+  ""
+  (println "Write the path to your picture or drag and drop your picture:")
+  (try
+    (println (simple/guess simple/nippy (do (flush) (read-line))))
+    (catch Exception e (println "404: a non-existing file."))))
+
 (defn tree-main []
   ""
-  "TODO")
+  (loop [user-input (do (flush) (read-line))]
+    (when-not (word-exists? quitwords user-input)
+    
+      (recur (do (flush) (read-line))))))
 
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
