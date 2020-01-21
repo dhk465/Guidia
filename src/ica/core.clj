@@ -66,9 +66,9 @@
         (var-set counter (+ 1 @counter))))
     (var-get counter)))
 
-(defn data-comparer-helper-simularity-vector [lst-park input-park]
+(defn data-comparer-helper-similarity-vector [lst-park input-park]
   "It takes in a vector that contains records of all parks
-  and the record that is created from user input.Outputs a simularity vector."
+  and the record that is created from user input.Outputs a similarity vector."
   (with-local-vars [sim-vector (vector)]
     (loop [lst-park-loc lst-park]
       (when-not (empty? lst-park-loc)
@@ -78,7 +78,7 @@
         (recur (rest lst-park-loc))))
     (var-get sim-vector)))
 
-(defn data-comparer-helper-get-max-simul-park [lst-park sim-vector highest]
+(defn data-comparer-helper-get-max-simil-park [lst-park sim-vector highest]
   "It takes in a vector of all parks, a vector
   that contains similarity count  and the maximum from the vector,
   returns a vector that contain park records
@@ -103,9 +103,9 @@
   "It takes in a vector of park records and a record
   that was created from a user input and
   returns a vector of the best matched parks."
-   (let* [sim-vector (data-comparer-helper-simularity-vector lst-park input-park)
+   (let* [sim-vector (data-comparer-helper-similarity-vector lst-park input-park)
           highest (data-comparer-find-max sim-vector)]
-      (data-comparer-helper-get-max-simul-park lst-park sim-vector highest)))
+      (data-comparer-helper-get-max-simil-park lst-park sim-vector highest)))
 
 (defn print-names [comparer-result]
   "It takes in a vector of parks and prints it in a sentence."
