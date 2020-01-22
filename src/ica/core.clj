@@ -48,46 +48,46 @@
         true
         (recur (rest lst))))))
 
-(defn data-comparer-helper-bool-comparison [position park-stored input-park]
+(defn data-comparer-helper-bool-comparison [position park-stored input-park lst-data]
   "It takes in two park records, a position in a record as a number,
   returns a boolean value
   if the both values on the given position have the value of 'true'."
   (and
-    (= true @((nth (rest (keys (first lst-park))) position) input-park))
-    (= true @((nth (rest (keys (first lst-park))) position) park-stored))))
+    (= true @((nth (rest (keys (first lst-data))) position) input-park))
+    (= true @((nth (rest (keys (first lst-data))) position) park-stored))))
 
-(defn data-comparer-helper-count-matches [park-stored input-park]
+(defn data-comparer-helper-count-matches [park-stored input-park lst-data]
   "It takes in a list of parks, user inputted data and a parameter,
   adds the park to a locally stored vector if the chosen parameter in the park
   and user inputted data matches. Returns that vector of parks."
   (with-local-vars [counter 0]
-    (doseq [position (range (- (count (first lst-park)) 1))]
-      (if (data-comparer-helper-bool-comparison position park-stored input-park)
+    (doseq [position (range (- (count (first lst-data)) 1))]
+      (if (data-comparer-helper-bool-comparison position park-stored input-park lst-data)
         (var-set counter (+ 1 @counter))))
     (var-get counter)))
 
-(defn data-comparer-helper-similarity-vector [lst-park input-park]
+(defn data-comparer-helper-similarity-vector [lst-data input-park]
   "It takes in a vector that contains records of all parks
   and the record that is created from user input.Outputs a similarity vector."
   (with-local-vars [sim-vector (vector)]
-    (loop [lst-park-loc lst-park]
-      (when-not (empty? lst-park-loc)
+    (loop [lst-data-loc lst-data]
+      (when-not (empty? lst-data-loc)
         (var-set sim-vector
           (conj @sim-vector 
-                (data-comparer-helper-count-matches  (first lst-park-loc) input-park)))
-        (recur (rest lst-park-loc))))
+                (data-comparer-helper-count-matches  (first lst-data-loc) input-park lst-data)))
+        (recur (rest lst-data-loc))))
     (var-get sim-vector)))
 
-(defn data-comparer-helper-get-max-simil-park [lst-park sim-vector highest]
+(defn data-comparer-helper-get-max-simil-park [lst-data sim-vector highest]
   "It takes in a vector of all parks, a vector
   that contains similarity count  and the maximum from the vector,
   returns a vector that contain park records
   that have the maximum similarity count in similarity count vector."
   (with-local-vars [park-matches (vector)]
     (loop [position 0]
-      (when (< position (count lst-park))
+      (when (< position (count lst-data))
         (if (= (nth sim-vector position) highest)
-          (var-set park-matches (conj @park-matches (nth lst-park position))))
+          (var-set park-matches (conj @park-matches (nth lst-data position))))
         (recur (+ 1 position))))
     (var-get park-matches)))
 
@@ -99,13 +99,13 @@
         (var-set highest sim-counter)))
     (var-get highest)))
 
-(defn data-comparer-main [lst-park input-park]
+(defn data-comparer-main [lst-data input-park]
   "It takes in a vector of park records and a record
   that was created from a user input and
   returns a vector of the best matched parks."
-   (let* [sim-vector (data-comparer-helper-similarity-vector lst-park input-park)
+   (let* [sim-vector (data-comparer-helper-similarity-vector lst-data input-park)
           highest (data-comparer-find-max sim-vector)]
-      (data-comparer-helper-get-max-simil-park lst-park sim-vector highest)))
+      (data-comparer-helper-get-max-simil-park lst-data sim-vector highest)))
 
 (defn print-names [comparer-result]
   "It takes in a vector of parks and prints it in a sentence."
@@ -149,7 +149,6 @@
   (let* [matches (data-comparer-main lst-park user-park)]
     (print-names matches)))
 
-
 (defn guide-main []
   "It loops the chatbot interface until a quitword is given.
   While it loops, it collects keywords from the user
@@ -181,17 +180,42 @@
           (print "User=> ")))
       (recur (do (flush) (read-line))))))
 
+(defn remove-from-end [s end]
+ "It takes in a string and another string which you want to remove from the
+ end "
+  (if (.endsWith s end)
+      (.substring s 0 (- (count s)
+                         (count end)))
+    s))
+
+
 (defn ask-for-pic []
   ""
   (println "Write the path to your picture or drag and drop your picture:")
   (try
-    (println (simple/guess simple/nippy (do (flush) (read-line))))
+    (println (simple/guess simple/nippy (do (flush) 
+             (remove-from-end (clojure.string/replace (read-line) "'" "") " ")
+             )))
     (catch Exception e (println "404: a non-existing file."))))
 
 (defn tree-main []
   ""
   (loop [user-input (do (flush) (read-line))]
     (when-not (word-exists? quitwords user-input)
+     (if (= (clojure.string/lower-case user-input) "forget")
+      (do
+          (reset-userrecord user-tree)
+          (println
+            (format
+              "%s=> Your preferences have been cleared."
+              "Tell me about your new park."
+              bot-name))
+          (print "User=> "))
+      (do
+        
+      )
+
+     )
     
       (recur (do (flush) (read-line))))))
 
