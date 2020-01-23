@@ -16,7 +16,7 @@
   "It contains a vector of greetings for parks
   that are printed in the beginning of the chat."
   [(format
-    "%s=> Hello, my name is %s, your guide to Prague parks."
+    "%s=> Now I am your guide to Prague parks."
     bot-name
     bot-name)
   (format
@@ -33,7 +33,7 @@
   "It contains a vector of greetings for trees
   that are printed in the beginning of the chat."
   [(format
-    "%s=> Hello, my name is %s, your guide to Prague's trees."
+    "%s=> Now I am your guide to Prague's trees."
     bot-name
     bot-name)
   (format
@@ -69,18 +69,19 @@
         true
         (recur (rest lst))))))
 
-(defn print-names [comparer-result]
+(defn print-names [comparer-result user-record]
   "It takes in a vector of parks and prints it in a sentence."
-  (if (= 0 (count comparer-result))
-    (println (format "%s=> Sorry. Nothing seems to match your preferences."
+  (if (or (= 0 (count comparer-result))
+          (and (= user-record user-tree) (> (count comparer-result) 1)))
+    (println (format "%s=> Sorry. Nothing seems to match your descriptions."
                      bot-name))
     (if (= 1 (count comparer-result))
       (do
-        (print (format "%s=> I would recommend " bot-name))
+        (print (format "%s=> I would say " bot-name))
         (print (:name (first comparer-result)))
         (println "."))
       (do
-        (print (format "%s=> I would recommend " bot-name))
+        (print (format "%s=> I would say " bot-name))
         (loop [comparer-res comparer-result]
           (when-not (empty? comparer-res)
             (if (empty? (rest comparer-res))
@@ -99,7 +100,7 @@
   (loop [grts greetings]
     (when-not (empty? grts)
       (doseq [timer (range (count greetings))]
-        (Thread/sleep 500))
+        (Thread/sleep 100)) ;; Change back to 500 for release
       (println (first grts))
       (recur (rest grts)))))
 
@@ -107,9 +108,12 @@
   "It cascades other functions, get-userrecord and data-comparer-main,
   and returns results of the park search in a single command.
   In doing so, it takes a string of the user input."
-  (get-userrecord user-input user-record)
+  (try
+    (get-userrecord user-input user-record)
+    (catch Exception e
+      (println (format "%s=> I don't get what you mean." bot-name))))
   (let* [matches (data-comparer-main lst-data user-record)]
-    (print-names matches)))
+    (print-names matches user-record)))
 
 (defn guide-main []
   "It loops the chatbot interface until a quitword is given.
@@ -184,6 +188,24 @@
 
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
+  (println
+    (format 
+      "%s=> Hello, my name is %s, your guide to Prague."
+      bot-name
+      bot-name))
+  (println
+    (format 
+      "%s=> Type 'park' if you want a guide to Prague's parks."
+      bot-name))
+  (println
+    (format 
+      "%s=> Or type 'tree' if you want a guide to Prague's trees."
+      bot-name))
+  (println
+    (format 
+      "%s=> Or type 'quit' if you want to say goodbye."
+      bot-name))
+  (print "User=> ")
   (let* [user-input (clojure.string/lower-case (do (flush) (read-line)))]
     (when-not (word-exists? quitwords user-input)
       (if (= user-input "park") 
