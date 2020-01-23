@@ -141,12 +141,12 @@
       (println (first grts))
       (recur (rest grts)))))
 
-(defn interface [user-input]
-  "It cascades other functions, get-userpark and data-comparer-main,
+(defn interface [user-input lst-data user-record]
+  "It cascades other functions, get-userrecord and data-comparer-main,
   and returns results of the park search in a single command.
   In doing so, it takes a string of the user input."
-  (get-userpark user-input)
-  (let* [matches (data-comparer-main lst-park user-park)]
+  (get-userrecord user-input user-record)
+  (let* [matches (data-comparer-main lst-data user-record)]
     (print-names matches)))
 
 (defn guide-main []
@@ -167,7 +167,7 @@
               bot-name))
           (print "User=> "))
         (do
-          (interface user-input)
+          (interface user-input lst-park user-park)
           (println
             (format
               "%s=> If you want something more specific,"
@@ -213,9 +213,7 @@
           (print "User=> "))
       (do
         
-      )
-
-     )
+      ))
     
       (recur (do (flush) (read-line))))))
 

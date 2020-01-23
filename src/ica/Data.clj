@@ -157,11 +157,11 @@
       (dosync (ref-set ((first kkeys) (decide-record user-record)) nil))
       (recur (rest kkeys)))))
 
-(defn get-userpark [sentence]
+(defn get-userrecord [sentence user-record]
   "It utilizes get-usermaps and sets values of user-park in regard to the 
   output of get-usermaps."
   (loop [lst-usermaps (get-usermaps sentence)]
     (when-not (empty? lst-usermaps)
-      (dosync (ref-set ((first (keys (first lst-usermaps))) user-park) 
+      (dosync (ref-set ((first (keys (first lst-usermaps))) (decide-record user-record)) 
       (first (vals (first lst-usermaps)))))
       (recur (rest lst-usermaps)))))
