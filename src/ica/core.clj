@@ -11,8 +11,8 @@
 
 (def bot-name "Guidia")
 
-(def greetings
-  "It contains a vector of greetings
+(def greetings-park
+  "It contains a vector of greetings for parks
   that are printed in the beginning of the chat."
   [(format
     "%s=> Hello, my name is %s, your guide to Prague parks."
@@ -23,6 +23,26 @@
     bot-name)
   (format
     "%s=> I can suggest a park in Prague for you."
+    bot-name)
+  (format
+    "%s=> Type 'forget' if you want to start over again."
+    bot-name)])
+
+(def greetings-tree
+  "It contains a vector of greetings for trees
+  that are printed in the beginning of the chat."
+  [(format
+    "%s=> Hello, my name is %s, your guide to Prague's trees."
+    bot-name
+    bot-name)
+  (format
+    "%s=> Describe the tree you saw."
+    bot-name)
+  (format
+    "%s=> I will try to name it."
+    bot-name)
+  (format
+    "%s=> Type 'forget' if you want to start over again."
     bot-name)])
 
 (def quitwords
@@ -131,7 +151,7 @@
                 (print ", ")))
             (recur (rest comparer-res))))))))
 
-(defn greet []
+(defn greet [greetings]
   "It contains a procedural structure of a chatbot interface.
   It prints out greetings and (TODO: more contents)."
   (loop [grts greetings]
@@ -155,6 +175,8 @@
   to find the user's preferences in parks.
   If the user says 'forget' instead,
   it resets the userpark to empty its data."
+  (greet greetings-park)
+  (print "User=> ")
   (loop [user-input (do (flush) (read-line))]
     (when-not (word-exists? quitwords user-input)
       (if (= (clojure.string/lower-case user-input) "forget")
@@ -162,8 +184,7 @@
           (reset-userrecord user-park)
           (println
             (format
-              "%s=> Your preferences have been cleared."
-              "Tell me about your new park."
+              "%s=> Now tell me about your new park."
               bot-name))
           (print "User=> "))
         (do
@@ -173,10 +194,6 @@
               "%s=> If you want something more specific,"
               bot-name)
             "tell me more what you wish.")
-          (println
-            (format
-              "%s=> If you want me to forget your preferences, type 'forget'."
-              bot-name))
           (print "User=> ")))
       (recur (do (flush) (read-line))))))
 
@@ -200,6 +217,8 @@
 
 (defn tree-main []
   ""
+  (greet greetings-tree)
+  (print "User=> ")
   (loop [user-input (do (flush) (read-line))]
     (when-not (word-exists? quitwords user-input)
      (if (= (clojure.string/lower-case user-input) "forget")
@@ -207,20 +226,24 @@
           (reset-userrecord user-tree)
           (println
             (format
-              "%s=> Your preferences have been cleared."
-              "Tell me about your new park."
+              "%s=> Now tell me about your new tree."
               bot-name))
           (print "User=> "))
-      (do
-        
-      ))
-    
-      (recur (do (flush) (read-line))))))
+     (do
+       (if (= (clojure.string/lower-case user-input) "classify")
+         (ask-for-pic)
+         (do
+          (interface user-input lst-tree user-tree)
+          (println
+            (format
+              "%s=> If you want something more specific,"
+              bot-name)
+            "tell me more what you wish.")
+          (print "User=> ")))))
+     (recur (do (flush) (read-line))))))
 
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
-  (greet)
-  (print "User=> ")
   (let* [user-input (clojure.string/lower-case (do (flush) (read-line)))]
     (when-not (word-exists? quitwords user-input)
       (if (= user-input "park")
