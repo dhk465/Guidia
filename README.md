@@ -84,6 +84,7 @@ the present simple tense.
 This chatbot depends on a multiple of libraries that provided code snippets
 or functions pre-defined by the authors listed below.
 
+* Anderson, M. (2019) '[imagez](https://github.com/mikera/imagez)', 0.12.0, _GitHub_.
 * Hinman, M. L. (2018) '[Natural Language Processing in Clojure (opennlp)](https://github.com/dakrone/clojure-opennlp)', 0.5.0, _GitHub_.
 * Hinman, M. L. (2019) '[Cheshire Clojure JSON encoding/decoding](https://github.com/dakrone/cheshire)', 5.9.0, _GitHub_.
 * r0man (2014) '[Inflections](https://github.com/r0man/inflections-clj)', 0.13.2, _GitHub_.
