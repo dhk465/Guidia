@@ -6,6 +6,8 @@
   (:use [inflections.core]
         [ica.opennlp :only (tokenize)]))
 
+(singular! #"(?i)([^f])ves$" "$1f")
+
 (defrecord Park
   [name dogs bicycle skating refreshment sportsfield playground parking])
 
