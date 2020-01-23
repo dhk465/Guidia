@@ -8,7 +8,7 @@
   "sportsfield": ["sportsfield", "sport", "ball", "exercise", "workout", "run", "jog", "field", "walk", "hike", "hiking", "climb", "football", "basketball", "tennis", "trail", "swim", "swimming", "soccer", "golf", "dart", "foosball", "tournement"],
   "playground": ["kid", "child", "play", "playground", "sand", "swing", "hut", "slide", "net", "climber"],
   "parking": ["parking", "car"],
-  "leaves": ["broad", "leaf", "deciduous"],
+  "leaves": ["broad", "leaf", "leaves", "deciduous"],
   "needles": ["needle", "pine", "evergreen"],
   "cones": ["cone", "pine", "conifer", "coniferous", "nut"],
   "flowers": ["flower", "petal", "fruit", "pollen"]
