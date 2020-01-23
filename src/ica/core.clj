@@ -118,7 +118,6 @@
   If the user says 'forget' instead,
   it resets the userpark to empty its data."
   (greet greetings-park)
-  (print "User=> ")
   (loop [user-input (do (flush) (read-line))]
     (when-not (word-exists? quitwords user-input)
       (if (= (clojure.string/lower-case user-input) "forget")
@@ -160,7 +159,6 @@
 (defn tree-main []
   ""
   (greet greetings-tree)
-  (print "User=> ")
   (loop [user-input (do (flush) (read-line))]
     (when-not (word-exists? quitwords user-input)
      (if (= (clojure.string/lower-case user-input) "forget")
@@ -188,10 +186,8 @@
   "It allows user to run the chatbot on command 'lein run'."
   (let* [user-input (clojure.string/lower-case (do (flush) (read-line)))]
     (when-not (word-exists? quitwords user-input)
-      (if (= user-input "park")
-        (do (print "User=> ")
-            (guide-main))
+      (if (= user-input "park") 
+            (guide-main)
         (if (= user-input "tree")
-          (do (print "User=> ")
-              (tree-main))))))
+              (tree-main)))))
   (println (format "%s=> Bye!" bot-name)))
