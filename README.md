@@ -92,7 +92,8 @@ or functions pre-defined by the authors listed below.
 
 ## References
 
-Praha.eu (2019) PRAŽSKÉ PARKY. Available at: http://www.praha.eu/jnp/cz/co_delat_v_praze/parky/index.html [Accessed: 14 November 2019].
+* Praha.eu (2019) PRAŽSKÉ PARKY. Available at: http://www.praha.eu/jnp/cz/co_delat_v_praze/parky/index.html [Accessed: 14 November 2019].
+* Deshpande, A. (2016) A Beginner’s Guide To Understanding Convolutional Neural Networks. Available at: https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner's-Guide-To-Understanding-Convolutional-Neural-Networks/ [Accessed: 29 December 2019].
 
 
 ## License
