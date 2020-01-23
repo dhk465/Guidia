@@ -1,10 +1,12 @@
-(ns ica.parkData
+(ns ica.Data
   "a namespace that contains information about Prague's parks"
   (:gen-class)
   (:require [clojure.java.io :as io]
             [cheshire.core :as cheshire :refer :all])
   (:use [inflections.core]
         [ica.opennlp :only (tokenize)]))
+
+(singular! #"(?i)([^f])ves$" "$1f")
 
 (defrecord Park
   [name dogs bicycle skating refreshment sportsfield playground parking])
@@ -99,10 +101,12 @@
 "It creates a vector where the data about the trees will be appended."
  [])
 
-(defrecord Tree [leaves needles cones evergreen flowers])
+(defrecord Tree [name leaves needles cones flowers])
 (def user-tree (Tree. (ref nil) (ref nil) (ref nil) (ref nil) (ref nil)))
-(def Spruce (Tree. (ref false) (ref true) (ref true) (ref true) (ref false)))
-(def Linden (Tree. (ref true) (ref false) (ref false) (ref false) (ref true)))
+(def Spruce (Tree. "Spruce" (ref false) (ref true) (ref true) (ref false)))
+(def lst-tree (conj lst-tree Spruce))
+(def Linden (Tree. "Linden" (ref true) (ref false) (ref false) (ref true)))
+(def lst-tree (conj lst-tree Linden))
 
 (def recogs
   "It parses the strings from reg_phrases.json into a hashmap that is used to 
@@ -132,28 +136,34 @@
 (defn get-usermaps [sentence]
   "It locally defines a map of keywords to be either true or false from the
   input string of the user. It returns a list of maps."
-  (with-local-vars [klice '()]
+  (with-local-vars [kkeys '()]
     (loop [mapper (recognize sentence)]
       (if (empty? mapper)
         (merge (map #(assoc {} (first %) (not (recognize-neg sentence))) 
-        (var-get klice)))
+        (var-get kkeys)))
         (when (not (recognize-neg sentence))
-          (var-set klice (conj @klice (keys (first mapper))))
+          (var-set kkeys (conj @kkeys (keys (first mapper))))
           (recur (rest mapper)))))))
 
-(defn reset-userpark []
+(defn decide-record [user-record]
+  (if (=  8 (count user-record))
+   user-park
+    (if (= 5 (count user-record))
+     user-tree)))
+
+(defn reset-userrecord [user-record]
   "It loops through all keys but the name of the user-park and sets them to 
   nil."
-  (loop [klice (rest (keys (first lst-park)))]
-    (when-not (empty? klice)
-      (dosync (ref-set ((first klice) user-park) nil))
-      (recur (rest klice)))))
+  (loop [kkeys (rest (keys user-record))]
+    (when-not (empty? kkeys)
+      (dosync (ref-set ((first kkeys) (decide-record user-record)) nil))
+      (recur (rest kkeys)))))
 
-(defn get-userpark [sentence]
+(defn get-userrecord [sentence user-record]
   "It utilizes get-usermaps and sets values of user-park in regard to the 
   output of get-usermaps."
   (loop [lst-usermaps (get-usermaps sentence)]
     (when-not (empty? lst-usermaps)
-      (dosync (ref-set ((first (keys (first lst-usermaps))) user-park) 
+      (dosync (ref-set ((first (keys (first lst-usermaps))) (decide-record user-record)) 
       (first (vals (first lst-usermaps)))))
       (recur (rest lst-usermaps)))))

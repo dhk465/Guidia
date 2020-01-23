@@ -17,7 +17,7 @@
 
 (def categories
   "It creates a hashmap of indices with their labels e.g. 'linden' and 'spruce'."
-  (zipmap (range) '("linden" "spruce")))
+  (zipmap (range) '("That's a linden tree!" "That's a spruce tree!")))
 
 (defn guess
   "It predicts a category of an input image from a nippy model and previously defined categories."
