@@ -122,6 +122,7 @@
   If the user says 'forget' instead,
   it resets the userpark to empty its data."
   (greet greetings-park)
+  (print "User=> ")
   (loop [user-input (do (flush) (read-line))]
     (when-not (word-exists? quitwords user-input)
       (if (= (clojure.string/lower-case user-input) "forget")
@@ -163,6 +164,7 @@
 (defn tree-main []
   ""
   (greet greetings-tree)
+  (print "User=> ")
   (loop [user-input (do (flush) (read-line))]
     (when-not (word-exists? quitwords user-input)
      (if (= (clojure.string/lower-case user-input) "forget")
