@@ -43,6 +43,9 @@
     "%s=> I will try to name it."
     bot-name)
   (format
+    "%s=> Type 'picture' and I will say what it is."
+    bot-name)
+  (format
     "%s=> Type 'forget' if you want to start over again."
     bot-name)])
 
@@ -176,8 +179,10 @@
               bot-name))
           (print "User=> "))
      (do
-       (if (= (clojure.string/lower-case user-input) "classify")
-         (ask-for-pic)
+       (if (= (clojure.string/lower-case user-input) "picture")
+         (do
+           (ask-for-pic)
+           (print "User=> "))
          (do
           (interface user-input lst-tree user-tree)
           (println
