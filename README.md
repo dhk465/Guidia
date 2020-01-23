@@ -78,6 +78,9 @@ Since Guidia operates on lists of keywords, it also does not understand
 differences of tenses or conjugations. It is recommended for the user to use
 the present simple tense.
 
+The accuracy of the image classification is only 63%.
+It is highly likely that a user-given picture is wrongly identified.
+
 
 ## Dependencies
 
