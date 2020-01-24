@@ -45,7 +45,7 @@ Guidia=> If you want something more specific, tell me more what you wish.
 User=> quit
 Guidia=> Bye!
 ```
-Guidia can be exited by certain keywords in [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json).
+Guidia can be exited by certain keywords in [recog_phrases.json](https://github.com/dhk465/Guidia/blob/master/src/ica/recog_phrases.json).
 
 
 ## Examples
@@ -67,7 +67,7 @@ Guidia gives the user a list of parks in Prague which match the wishes
 that the user type.
 The match-able keywords may include pets, cycling, skating, bars/restaurants,
 sports, playgrounds for children, and parking.
-More keywords for park recommindation can be added to [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json), from the begining till the line 10 inclusively  .
+More keywords for park recommindation can be added to [recog_phrases.json](https://github.com/dhk465/Guidia/blob/master/src/ica/recog_phrases.json), from the begining till the line 10 inclusively  .
 ```
 Guidia=> Tell me what you would like to see or like to do in Prague.
 Guidia=> I can suggest a park in Prague for you.
@@ -81,7 +81,7 @@ Guidia=> If you want something more specific, tell me more what you wish.
 
 Guidia offers a user a tree that fits users description
 The match-able keywords for this part of chatbot include cones, flower, nuts, needles and board. From this part of the chatbot it is possible to switch to the next part, which is image classififcation.
-Additional keywords for this part of chatbot can be added to [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json), starting from line 11.
+Additional keywords for this part of chatbot can be added to [recog_phrases.json](https://github.com/dhk465/Guidia/blob/master/src/ica/recog_phrases.json), starting from line 11.
 ```
 Guidia=> Now I am your guide to Prague's trees.
 Guidia=> Describe the tree you saw.
@@ -119,7 +119,7 @@ user may not be very accurate.
 
 Linguistic conjunctions containing "or" is considered as "and".
 Guidia does not have any complex understandings of conjunctions
-but only track the phrases in [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json).
+but only track the phrases in [recog_phrases.json](https://github.com/dhk465/Guidia/blob/master/src/ica/recog_phrases.json).
 
 Since Guidia operates on lists of keywords, it also does not understand
 differences of tenses or conjugations. It is recommended for the user to use
