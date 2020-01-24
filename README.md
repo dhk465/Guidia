@@ -11,7 +11,7 @@ structure of the English language
 The chatbot's main theme is to recommend Prague's thirteen major parks to the
 user in regard to the user's preferences.
 
-A deep learning agent is also to be added to the chatbot made in [the ICA project](https://github.com/dhk465/symbolic_comp_one).
+A deep learning agent is also to be added to the chatbot in version 2.0.
 
 In addition to the Prague guide chatbot "Guidia", the application recognizes a picture given by the user, and determines if the object in the picture is either a **linden tree** or a **spruce tree**.
 
