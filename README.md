@@ -45,11 +45,22 @@ Guidia can be exited by certain keywords in [recog_phrases.json](https://github.
 
 ## Examples
 
+### Introduction
+
+In this part, a user is being greeted and offered to choose between parks and trees or exit the chatbot.In case if the user doesn't choose anything from this list, the programme will say goodbye to the user and turn off.
+```
+Guidia=> Hello, my name is Guidia, your guide to Prague.
+Guidia=> Type 'park' if you want a guide to Prague's parks.
+Guidia=> Or type 'tree' if you want a guide to Prague's trees.
+Guidia=> Or type 'quit' if you want to say goodbye.
+```
+### Park example
+
 Guidia gives the user a list of parks in Prague which match the wishes
 that the user type.
 The match-able keywords may include pets, cycling, skating, bars/restaurants,
 sports, playgrounds for children, and parking.
-More keywords can be added to [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json).
+More keywords for park recommindation can be added to [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json), from the begining till the line 10 inclusively  .
 ```
 Guidia=> Tell me what you would like to see or like to do in Prague.
 Guidia=> I can suggest a park in Prague for you.
@@ -57,7 +68,36 @@ User=> I would like to ride a bike and eat something in a park.
 Guidia=> I would recommend Bertramka, Františkánská zahrada, Obora Hvězda, Kampa, Petřín, Riegrovy sady, Stromovka, and Vyšehrad.
 Guidia=> If you want something more specific, tell me more what you wish.
 ```
+### Tree example
 
+Guidia offers a user a tree that fits users description
+The match-able keywords for this part of chatbot include cones, flower, nuts, needles and board. From this part of the chatbot it is possible to switch to the next part, which is image classififcation.
+Additional keywords for this part of chatbot can be added to [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json), starting from line 11.
+```
+Guidia=> Now I am your guide to Prague's trees.
+Guidia=> Describe the tree you saw.
+Guidia=> I will try to name it.
+Guidia=> Type 'picture' and I will say what it is.
+Guidia=> Type 'forget' if you want to start over again.
+User=> The tree has needles.
+Guidia=> I would say Spruce.
+Guidia=> If you want something more specific, tell me more what you wish.
+```
+
+### Image classification
+
+In this part of the chatbot it is possible to identify trees by a photo. A user can drag and drop the picture or put the path to the file. 
+```
+User=> picture
+Write the path to your picture or drag and drop your picture:
+images/sprucesample2.jpg
+CUDA backend creation failed, reverting to CPU
+Jan 23, 2020 11:54:38 PM com.github.fommil.netlib.BLAS <clinit>
+WARNING: Failed to load implementation from: com.github.fommil.netlib.NativeSystemBLAS
+Jan 23, 2020 11:54:38 PM com.github.fommil.netlib.BLAS <clinit>
+WARNING: Failed to load implementation from: com.github.fommil.netlib.NativeRefBLAS
+That's a spruce tree!
+```
 
 ## Limitations
 
