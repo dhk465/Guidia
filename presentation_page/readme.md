@@ -27,7 +27,22 @@ It only has the accuracy of 63.67% for the correct recognition.
 The architecture of Guidia's network is borrowed directly from [mnist classification of Cortex](https://github.com/originrose/cortex/tree/master/examples/mnist-classification).
 It may be the cause of low accuracy of the network for this specific example since it was used to test specifically on mnist.
 
-Input (training and test images) > Convolution > Max Pooling > DropOut > ReLu Activation > Convolution > Max Pooling  > Linear Convergence with Batch Nomalization > ReLu Activation > DropOut > Linear Convergence (as much as the number of classes) > Softmax Activation > Model Output
+```architecture
+Input (training and test images)
+> Convolution
+> Max Pooling
+> DropOut
+> ReLu Activation
+> Convolution
+> Max Pooling 
+> Linear Convergence with Batch Nomalization
+> ReLu Activation
+> DropOut
+> Linear Convergence (as much as the number of classes)
+> Softmax Activation
+> Model Output
+```
+
 
 ## Examples
 
