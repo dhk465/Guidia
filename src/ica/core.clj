@@ -5,10 +5,10 @@
             [cheshire.core :as cheshire :refer :all]
             [ica.simple :as simple])
   (:use [ica.opennlp :only (tokenize)]
-        [ica.Data]
+        [ica.data]
         [ica.comparer]
         [inflections.core])	
-  (:import [ica.Data Park Tree]))
+  (:import [ica.data Park Tree]))
 
 (def bot-name "Guidia")
 
