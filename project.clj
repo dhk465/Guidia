@@ -8,7 +8,11 @@
                  [clojure-opennlp "0.5.0"]
                  [cheshire "5.9.0"]
                  [inflections "0.13.2"]
-                 [thinktopic/cortex "0.9.22"]]
+                 [thinktopic/experiment "0.9.22"]
+                 [net.mikera/imagez "0.12.0"]
+                 [thinktopic/think.image "0.4.8" ]
+                 [thinktopic/think.datatype "0.3.17"]]
+  :jvm-opts ["-Xmx8000m"]
   :profiles {:dev {:dependencies [[org.clojure/clojure "1.9.0"]]
                    :plugins [[lein-marginalia "0.8.0"]]}
              :1.5 {:dependencies [[org.clojure/clojure "1.5.1"]]}
