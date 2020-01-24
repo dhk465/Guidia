@@ -77,11 +77,6 @@ In this part of the chatbot it is possible to identify trees by a photo. A user 
 User=> picture
 Write the path to your picture or drag and drop your picture:
 images/sprucesample2.jpg
-CUDA backend creation failed, reverting to CPU
-Jan 23, 2020 11:54:38 PM com.github.fommil.netlib.BLAS <clinit>
-WARNING: Failed to load implementation from: com.github.fommil.netlib.NativeSystemBLAS
-Jan 23, 2020 11:54:38 PM com.github.fommil.netlib.BLAS <clinit>
-WARNING: Failed to load implementation from: com.github.fommil.netlib.NativeRefBLAS
 That's a spruce tree!
 ```
 Cortex uses netlib to help with algebraic computation, but it is not implemented in Guidia.
