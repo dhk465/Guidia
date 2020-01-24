@@ -164,22 +164,12 @@
           (print "User=> ")))
       (recur (do (flush) (read-line))))))
 
-(defn remove-from-end [s end]
- "It takes in a string and another string which you want to remove from the
- end "
-  (if (.endsWith s end)
-      (.substring s 0 (- (count s)
-                         (count end)))
-    s))
-
-
 (defn ask-for-pic []
   ""
   (println "Write the path to your picture or drag and drop your picture:")
   (try
     (println (simple/guess simple/nippy (do (flush) 
-             (remove-from-end (clojure.string/replace (read-line) "'" "") " ")
-             )))
+             (clojure.string/trim (clojure.string/replace (read-line) "'" "")))))
     (catch Exception e (println "404: a non-existing file."))))
 
 (defn tree-main []
