@@ -49,6 +49,24 @@
     "%s=> Type 'forget' if you want to start over again."
     bot-name)])
 
+(def greetings-main
+  "It contains a vector of initial greetings 
+  that are printed in the beginning of the chat."
+    [(format 
+      "%s=> Hello, my name is %s, your guide to Prague."
+      bot-name
+      bot-name)
+    (format 
+      "%s=> Type 'park' if you want a guide to Prague's parks."
+      bot-name)
+ 
+    (format 
+      "%s=> Or type 'tree' if you want a guide to Prague's trees."
+      bot-name)
+    (format 
+      "%s=> Or type 'quit' if you want to say goodbye."
+      bot-name)])
+
 (def quitwords
   "It slurps a list of words from 'recog_phrases.json'
   that are used to quit chatbot's main loop."
@@ -195,23 +213,7 @@
 
 (defn -main [& args]
   "It allows user to run the chatbot on command 'lein run'."
-  (println
-    (format 
-      "%s=> Hello, my name is %s, your guide to Prague."
-      bot-name
-      bot-name))
-  (println
-    (format 
-      "%s=> Type 'park' if you want a guide to Prague's parks."
-      bot-name))
-  (println
-    (format 
-      "%s=> Or type 'tree' if you want a guide to Prague's trees."
-      bot-name))
-  (println
-    (format 
-      "%s=> Or type 'quit' if you want to say goodbye."
-      bot-name))
+  (greet greetings-main)
   (print "User=> ")
   (let* [user-input (clojure.string/lower-case (do (flush) (read-line)))]
     (when-not (word-exists? quitwords user-input)
