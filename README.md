@@ -26,8 +26,8 @@ In addition to the Prague guide chatbot "Guidia", the application recognizes a p
 Guidia chatbot is hosted on GitHub. You can use the commands below to
 download this chatbot.
 ```
-git clone https://github.com/dhk465/symbolic_comp_one.git
-cd symbolic_comp_one
+git clone https://github.com/dhk465/Guidia.git
+cd Guidia
 ```
 
 
