@@ -1,47 +1,33 @@
-# Guidia chatbot 2.0
+# Guidia: Chatbot to guide you through Prague
 
-The ICA Project in the Symbolic Computation class of Computing B.Sc.
-(grad. expected in 2021)
+## Overview
 
+(hypotetical)
+Guidia is a chatbot designed to help Prague visitors and residents find a desired park destination(s)
+as well as identify trees (specifically linden and spruce trees) in the parks.
+It is equipped with two machine learning technologies: Natural Language Processing and Neural Network Deep Learning.
 
-## Objective
+## Open Natural Language Processing
 
-A deep learning agent is added to the chatbot made in [the ICA project](https://github.com/dhk465/symbolic_comp_one).
+Guidia recognizes English words based on [Apache's OpenNLP](https://opennlp.apache.org/).
+The process consists of tokenization of user's sentences and recognition of the tokens on the example mappings in JSON.
+It then parses the recognized maps to Clojure records for Guidia to compare and recommend matching parks.
 
-In addition to the Prague guide chatbot "Guidia", the application recognizes a picture given by the user, and determines if the object in the picture is (((TBA))).
+## Convolutional Neural Network
 
+Guidia is also implemented with an image classification of trees, specifically spruce trees vs linden trees.
+Convolutional neural network is the core of Guidia's deep learning process, which is built with Cortex in Clojure.
+It takes an input of an image that is seen as an array of pixel values, then processed for patterns to be recognized.
+The outputs are simply class labels and how much they resemble other examples of the same classes (i.e. pre-trained).
+It has, however, not been tested enough with different architectures on spruce and linden trees.
+It only has the accuracy of 63.67% for the correct recognition.
 
-## Requirement
+### Network Architecture
 
-* [Leiningen](https://leiningen.org/) version 2.0 or higher
+The architecture of Guidia's network is borrowed directly from [mnist classification of Cortex](https://github.com/originrose/cortex/tree/master/examples/mnist-classification).
+It may be the cause of low accuracy of the network for this specific example since it was used to test specifically on mnist.
 
-
-## Installation
-
-Guidia chatbot is hosted on GitHub. You can use the commands below to
-download this chatbot.
-```
-git clone https://github.com/dhk465/symbolic_comp_two.git
-cd symbolic_comp_two
-```
-
-
-## Usage
-
-Open a terminal or command-line in the repository where project.clj is located.
-Then type the line below:
-```
-lein run
-```
-Leiningen will download and install all necessary libraries for a short moment.
-
-```
-Guidia=> If you want something more specific, tell me more what you wish.
-User=> quit
-Guidia=> Bye!
-```
-Guidia can be exited by certain keywords in [recog_phrases.json](https://github.com/dhk465/symbolic_comp_one/blob/master/src/ica/recog_phrases.json).
-
+Input (training and test images) > Convolution > Max Pooling > DropOut > ReLu Activation > Convolution > Max Pooling  > Linear Convergence with Batch Nomalization > ReLu Activation > DropOut > Linear Convergence (as much as the number of classes) > Softmax Activation > Model Output
 
 ## Examples
 
@@ -98,6 +84,7 @@ Jan 23, 2020 11:54:38 PM com.github.fommil.netlib.BLAS <clinit>
 WARNING: Failed to load implementation from: com.github.fommil.netlib.NativeRefBLAS
 That's a spruce tree!
 ```
+Cortex uses netlib to help with algebraic computation, but it is not implemented in Guidia.
 
 ## Limitations
 
@@ -120,37 +107,3 @@ the present simple tense.
 
 The accuracy of the image classification is only 63%.
 It is highly likely that a user-given picture is wrongly identified.
-
-
-## Dependencies
-
-This chatbot depends on a multiple of libraries that provided code snippets
-or functions pre-defined by the authors listed below.
-
-* Anderson, M. (2019) '[imagez](https://github.com/mikera/imagez)', 0.12.0, _GitHub_.
-* Hinman, M. L. (2018) '[Natural Language Processing in Clojure (opennlp)](https://github.com/dakrone/clojure-opennlp)', 0.5.0, _GitHub_.
-* Hinman, M. L. (2019) '[Cheshire Clojure JSON encoding/decoding](https://github.com/dakrone/cheshire)', 5.9.0, _GitHub_.
-* r0man (2014) '[Inflections](https://github.com/r0man/inflections-clj)', 0.13.2, _GitHub_.
-* ThinkTopic, Anderson, M. (2018) '[Cortex](https://github.com/originrose/cortex)', 0.9.22, _GitHub_.
-
-
-## References
-
-* Praha.eu (2019) PRAŽSKÉ PARKY. Available at: http://www.praha.eu/jnp/cz/co_delat_v_praze/parky/index.html [Accessed: 14 November 2019].
-* Deshpande, A. (2016) A Beginner’s Guide To Understanding Convolutional Neural Networks. Available at: https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner's-Guide-To-Understanding-Convolutional-Neural-Networks/ [Accessed: 29 December 2019].
-
-
-## License
-
-Copyright © 2019 Daehee Kim (dhk465 and MockTurtle7), Ilyas Sakhanov (ilyassakhanov and Ivan Ivanov), Sulieman Al Rustom (Slemanof)
-
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
-
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
