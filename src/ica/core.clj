@@ -121,7 +121,7 @@
   (loop [grts greetings]
     (when-not (empty? grts)
       (doseq [timer (range (count greetings))]
-        (Thread/sleep 100)) ;; Change back to 500 for release
+        (Thread/sleep 500))
       (println (first grts))
       (recur (rest grts)))))
 
